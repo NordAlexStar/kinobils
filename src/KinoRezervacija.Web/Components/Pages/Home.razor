@@ -1,0 +1,51 @@
+@page "/"
+@rendermode InteractiveServer
+@inject CinemaCatalogService Catalog
+
+<PageTitle>KINO NOX — Filmas</PageTitle>
+
+<section class="cinema-hero">
+    <div class="hero-noise"></div>
+    <div class="hero-copy">
+        <p class="eyebrow">ŠODIEN KINOTEĀTRĪ</p>
+        <h1>Gaisma izdziest.<br /><i>Stāsts sākas.</i></h1>
+        <p class="hero-intro">Izvēlies filmu, atrodi savu seansu un sajūti kinoteātri vēl pirms ieejas zālē.</p>
+        <a class="button button-primary" href="#filmas">Skatīt repertuāru <span>↓</span></a>
+    </div>
+    <div class="hero-orbit" aria-hidden="true"><span>20</span><small>JŪLIJS<br />2026</small></div>
+    <div class="hero-film-title">NEONA<br /><em>PILSĒTA</em></div>
+</section>
+
+<section class="catalog" id="filmas">
+    <div class="section-head">
+        <div><p class="eyebrow">REPERTUĀRS</p><h2>Izvēlies savu <i>kadru</i></h2></div>
+        <div class="filters">
+            <button class="filter @(SelectedGenre is null ? "is-active" : "")" @onclick="() => SelectedGenre = null">Visas filmas</button>
+            @foreach (var genre in Genres) { <button class="filter @(SelectedGenre == genre ? "is-active" : "")" @onclick="() => SelectedGenre = genre">@genre</button> }
+            <button class="filter @(TodayOnly ? "is-active" : "")" @onclick="() => TodayOnly = !TodayOnly">Šodien</button>
+        </div>
+    </div>
+    <div class="movie-grid">
+        @foreach (var movie in VisibleMovies)
+        {
+            <article class="movie-tile @movie.Accent">
+                <a href="movie/@movie.Id" class="tile-link" aria-label="Atvērt @movie.Title"></a>
+                <div class="poster-art">
+                    @if (!string.IsNullOrWhiteSpace(movie.PosterPath))
+                    {
+                        <img class="poster-image" src="@movie.PosterPath" alt="Plakāts filmai @movie.Title" />
+                    }
+                    <span>@movie.Genre.ToUpperInvariant()</span><strong>@movie.Title</strong><b>@movie.AgeRating</b>
+                </div>
+                <div class="tile-info"><div><h3>@movie.Title</h3><p>@movie.DurationMinutes min · @movie.Language</p></div><span class="price">no @movie.FromPrice.ToString("0.00") €</span></div>
+            </article>
+        }
+    </div>
+</section>
+
+@code {
+    private string? SelectedGenre { get; set; }
+    private bool TodayOnly { get; set; }
+    private IEnumerable<string> Genres => Catalog.Movies.Select(movie => movie.Genre).Distinct().Order();
+    private IEnumerable<Movie> VisibleMovies => Catalog.Movies.Where(movie => (SelectedGenre is null || movie.Genre == SelectedGenre) && (!TodayOnly || Catalog.GetScreenings(movie.Id).Any(screening => screening.StartsAt.Date == DateTime.Today)));
+}

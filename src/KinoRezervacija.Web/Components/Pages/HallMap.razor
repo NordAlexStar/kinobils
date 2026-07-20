@@ -1,0 +1,11 @@
+@page "/hall/{ScreeningId:int}"
+@rendermode InteractiveServer
+@inject CinemaCatalogService Catalog
+
+<PageTitle>Zāles plāns — KINO NOX</PageTitle>
+@if (Screening is null || Movie is null) { <p class="empty-state">Seanss nav atrasts.</p> }
+else
+{
+<section class="hall-page"><a class="back-link" href="movie/@Movie.Id">← @Movie.Title</a><div class="section-head"><div><p class="eyebrow">@Screening.StartsAt.ToString("dd. MMMM · HH:mm")</p><h1>@Screening.Hall</h1></div><p class="muted">Pirmajā sprintā vietas var apskatīt.<br />Rezervācija būs pieejama otrajā sprintā.</p></div><div class="screen"><span>EKRĀNS</span></div><div class="seat-map">@for (var row = 1; row <= Hall.Rows; row++) { <div class="seat-row"><span>@row</span>@for (var seat = 1; seat <= Hall.SeatsPerRow; seat++) { var occupied = (row * seat + ScreeningId) % 7 == 0; <button class="seat @(occupied ? "occupied" : "")" disabled="@occupied" title="@(occupied ? "Aizņemta vieta" : "Brīva vieta")">@seat</button> }</div> }</div><div class="seat-legend"><span><i class="seat"></i> Brīva</span><span><i class="seat occupied"></i> Aizņemta</span></div></section>
+}
+@code { [Parameter] public int ScreeningId { get; set; } private Screening? Screening => Catalog.Screenings.SingleOrDefault(item => item.Id == ScreeningId); private Movie? Movie => Screening is null ? null : Catalog.FindMovie(Screening.MovieId); private Hall Hall => Catalog.Halls.Single(hall => hall.Name == Screening!.Hall); }

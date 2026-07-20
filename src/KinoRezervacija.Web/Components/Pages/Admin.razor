@@ -1,0 +1,25 @@
+@page "/admin"
+@rendermode InteractiveServer
+@inject CinemaCatalogService Catalog
+
+<PageTitle>Pārvaldība — KINO NOX</PageTitle>
+
+<section class="admin-page">
+    <div class="section-head"><div><p class="eyebrow">OPERATORA DARBA VIETA</p><h1>Repertuāra <i>pārvaldība</i></h1></div><span class="status-tag">● Dati saglabāti sesijā</span></div>
+    <div class="admin-layout">
+        <div class="admin-form"><h2>Pievienot filmu</h2><p>Izveido kartīti, kas uzreiz būs redzama repertuārā.</p><EditForm Model="NewMovie" OnValidSubmit="SaveMovie"><DataAnnotationsValidator /><div class="field-grid"><label>Nosaukums<InputText @bind-Value="NewMovie.Title" /></label><label>Žanrs<InputText @bind-Value="NewMovie.Genre" /></label></div><label>Apraksts<InputTextArea @bind-Value="NewMovie.Description" /></label><div class="field-grid"><label>Ilgums minūtēs<InputNumber @bind-Value="NewMovie.Duration" /></label><label>Vecuma ierobežojums<InputText @bind-Value="NewMovie.AgeRating" /></label></div><label>Filmas valoda<InputText @bind-Value="NewMovie.Language" /></label><button class="button button-primary" type="submit">Pievienot filmu <span>+</span></button></EditForm></div>
+        <div class="admin-form"><h2>Izveidot seansu</h2><p>Piesaisti filmu, zāli un laiku kinoteātra grafikam.</p><EditForm Model="NewScreening" OnValidSubmit="SaveScreening"><DataAnnotationsValidator /><label>Filma<InputSelect @bind-Value="NewScreening.MovieId">@foreach (var movie in Catalog.Movies) { <option value="@movie.Id">@movie.Title</option> }</InputSelect></label><div class="field-grid"><label>Datums un laiks<InputDate @bind-Value="NewScreening.StartsAt" Type="InputDateType.DateTimeLocal" /></label><label>Zāle<InputSelect @bind-Value="NewScreening.Hall">@foreach (var hall in Catalog.Halls) { <option>@hall.Name</option> }</InputSelect></label></div><label>Cena, €<InputNumber @bind-Value="NewScreening.Price" /></label><button class="button button-primary" type="submit">Izveidot seansu <span>+</span></button></EditForm></div>
+    </div>
+    @if (!string.IsNullOrWhiteSpace(Notice)) { <div class="notice">@Notice</div> }
+    <section class="admin-table"><h2>Aktīvās filmas un seansi</h2><div class="table-head"><span>Filma</span><span>Žanrs</span><span>Seansi šodien</span><span>Vietas</span></div>@foreach (var movie in Catalog.Movies) { var screenings = Catalog.GetScreenings(movie.Id).ToList(); <div class="table-row"><span><b>@movie.Title</b><small>@movie.DurationMinutes min · @movie.AgeRating</small></span><span>@movie.Genre</span><span>@screenings.Count</span><span>@(screenings.Sum(item => item.FreeSeats)) brīvas</span></div> }</section>
+</section>
+
+@code {
+    private NewMovieInput NewMovie { get; set; } = new();
+    private NewScreeningInput NewScreening { get; set; } = new() { MovieId = 1, Hall = "Zāle 1", StartsAt = DateTime.Today.AddDays(1).AddHours(18), Price = 8.50m };
+    private string? Notice { get; set; }
+    private void SaveMovie() { Catalog.AddMovie(NewMovie.Title, NewMovie.Genre, NewMovie.Duration, NewMovie.Description, NewMovie.AgeRating, NewMovie.Language); Notice = $"Filma “{NewMovie.Title}” pievienota repertuāram."; NewMovie = new(); }
+    private void SaveScreening() { Catalog.AddScreening(NewScreening.MovieId, NewScreening.StartsAt, NewScreening.Hall, NewScreening.Price); Notice = "Seanss ir pievienots kinoteātra grafikam."; }
+    private sealed class NewMovieInput { [System.ComponentModel.DataAnnotations.Required] public string Title { get; set; } = ""; [System.ComponentModel.DataAnnotations.Required] public string Genre { get; set; } = ""; [System.ComponentModel.DataAnnotations.Range(1, 360)] public int Duration { get; set; } = 100; [System.ComponentModel.DataAnnotations.Required] public string Description { get; set; } = ""; public string AgeRating { get; set; } = "7+"; public string Language { get; set; } = "Latviešu"; }
+    private sealed class NewScreeningInput { public int MovieId { get; set; } public DateTime StartsAt { get; set; } public string Hall { get; set; } = ""; public decimal Price { get; set; } }
+}
