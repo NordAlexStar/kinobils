@@ -7,7 +7,15 @@
 @if (Movie is null) { <p class="empty-state">Filma nav atrasta.</p> }
 else
 {
-    <section class="movie-hero @Movie.Accent"><a class="back-link" href="">← Atpakaļ uz repertuāru</a><div class="movie-hero-info"><p class="eyebrow">@Movie.Genre.ToUpperInvariant()</p><h1>@Movie.Title</h1><div class="film-facts"><span>@Movie.DurationMinutes min</span><span>@Movie.AgeRating</span><span>@Movie.Language</span><span>Subtitri: @Movie.SubtitleLanguage</span></div><p>@Movie.Description</p></div><div class="giant-letter" aria-hidden="true">@Movie.Title[0]</div></section>
+    <section class="movie-hero @Movie.Accent">
+        <a class="back-link" href="">← Atpakaļ uz repertuāru</a>
+        <div class="movie-hero-info"><p class="eyebrow">@Movie.Genre.ToUpperInvariant()</p><h1>@Movie.Title</h1><div class="film-facts"><span>@Movie.DurationMinutes min</span><span>@Movie.AgeRating</span><span>@Movie.Language</span><span>Subtitri: @Movie.SubtitleLanguage</span></div><p>@Movie.Description</p></div>
+        @if (!string.IsNullOrWhiteSpace(Movie.PosterPath))
+        {
+            <img class="movie-hero-poster" src="@Movie.PosterPath" alt="Plakāts filmai @Movie.Title" />
+        }
+        <div class="giant-letter" aria-hidden="true">@Movie.Title[0]</div>
+    </section>
     <section class="screening-section"><div class="section-head"><div><p class="eyebrow">SEANSI</p><h2>Šodien, 20. jūlijā</h2></div><span class="muted">Izvēlies seansu, lai apskatītu zāli</span></div><div class="screening-list">@foreach (var screening in Catalog.GetScreenings(MovieId)) { <a class="screening" href="hall/@screening.Id"><time>@screening.StartsAt.ToString("HH:mm")</time><span>@screening.Hall</span><span class="free"><i></i>@screening.FreeSeats brīvas vietas</span><strong>@screening.Price.ToString("0.00") €</strong><b>→</b></a> }</div></section>
 }
 
