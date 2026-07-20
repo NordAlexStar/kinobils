@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddSingleton<CinemaCatalogService>();
+builder.Services.AddSingleton<BookingService>();
+builder.Services.AddScoped<CustomerSession>();
 
 var app = builder.Build();
 

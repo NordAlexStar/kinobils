@@ -1,0 +1,7 @@
+@page "/ticket/{OrderId:guid}"
+@inject BookingService Booking
+@inject CinemaCatalogService Catalog
+
+<PageTitle>Biļete — KINO NOX</PageTitle>
+@if (Order is null || Screening is null || Movie is null) { <p class="empty-state">Biļete nav atrasta.</p> } else { <section class="ticket-page"><p class="eyebrow">APMAKSĀTA BIĻETE</p><h1>Lai sākas <i>seanss.</i></h1><div class="digital-ticket"><div class="ticket-details"><span>KINO NOX · @Screening.Hall</span><h2>@Movie.Title</h2><p>@Screening.StartsAt.ToString("dddd, dd. MMMM · HH:mm")</p><div><b>Vietas</b><strong>@string.Join(" · ", Order.Seats)</strong></div><small>@Order.Email</small></div><div class="qr"><span>@Order.QrToken[..4]</span><span>@Order.QrToken[4..]</span></div></div><a class="button button-primary" href="">Atgriezties repertuārā <span>→</span></a></section> }
+@code { [Parameter] public Guid OrderId { get; set; } private TicketOrder? Order => Booking.FindOrder(OrderId); private Screening? Screening => Order is null ? null : Catalog.Screenings.SingleOrDefault(item => item.Id == Order.ScreeningId); private Movie? Movie => Screening is null ? null : Catalog.FindMovie(Screening.MovieId); }
