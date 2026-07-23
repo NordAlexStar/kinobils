@@ -170,7 +170,7 @@ h1. Steps
 * Lietotājs atver autorizācijas lapu
 * Lietotājs ievada e-pasta adresi
 * Lietotājs ievada paroli
-* Lietotājs nospiež pogu - autorizēties
+* Lietotājs nospiež pogu "Autorizēties"
 
 h2. Expected
 * Lietotājs tiek veiksmīgi autorizēts sistēmā
@@ -210,15 +210,15 @@ h2. Steps
 * Lietotājs atver autorizācijas lapu
 * Lietotājs ievada e-pasta adresi
 * Lietotājs ievada nederīgu paroli
-* Lietotājs nospiež pogu - autorizēties
+* Lietotājs nospiež pogu "Autorizēties"
 * Sistēma informē lietotāju par neveiksmīgu autorizācijas mēģinājumu
 * Lietotājs atkārtoti ievada reģistrēto e-pasta adresi
 * Lietotājs atkārtoti ievada nederīgu paroli
-* Lietotājs nospiež pogu - autorizēties
+* Lietotājs nospiež pogu "Autorizēties"
 * Sistēma informē lietotāju par neveiksmīgu autorizācijas mēģinājumu
 * Lietotājs trešo reizi ievada reģistrēto e-pasta adresi
 * Lietotājs ievada nederīgu paroli
-* Lietotājs nospiež pogu - autorizēties
+* Lietotājs nospiež pogu "Autorizēties"
 * Sistēma informē lietotāju par neveiksmīgu autorizācijas mēģinājumu un konta bloķešanu
 * Lietotājs nospiež pogu "Atiestatīt paroli" 
 * Lietotājs ievada savu e-pasta adresi 
