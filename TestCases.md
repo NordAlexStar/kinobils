@@ -1,6 +1,6 @@
-KIN-01	Must	Kā pircējs es vēlos redzēt pieejamo filmu sarakstu alfabētiskā secībā, lai ātri atrastu interesējošo filmu.
+### KIN-01	Must	Kā pircējs es vēlos redzēt pieejamo filmu sarakstu alfabētiskā secībā, lai ātri atrastu interesējošo filmu.
 
-TC-26: TC-FILM-01: Saraksts tiek ieladets
+#### KIN-01-01: Saraksts tiek ieladets
 h2. Preconditions
 * Datu baze satur 5+ filmas
 
@@ -12,6 +12,28 @@ h2. Expected
 * Tiek paradits 5+ filmu saraksts
 * Katrai filmai redzams nosaukums, zanrs, gads
 
+#### KIN-01-02: Tukss saraksts (nav filmu)
+h2. Preconditions
+* Visas filmas izdzestas
+
+h2. Steps
+* 1. Atver filmu sarakstu
+
+h2. Expected
+* Paradits draudzigs kjudas prieksstats
+* Nav redzama 500/404 kjuda
+
+#### KIN-01-03: Filmas detalu lapa
+h2. Preconditions
+* Ir filma ar pilnu informaciju
+
+h2. Steps
+* 1. Uzklikskina uz filmas
+
+h2. Expected
+* Tiek atverta filmas detalu lapa
+* Visi lauki atteloti korekti
+
 KIN-02	Must	Kā pircējs es vēlos apskatīt filmas detalizētu informāciju — nosaukumu, īsu aprakstu, žanru, ilgumu minūtēs, vecuma ierobežojumu, valodu un subtitru valodu — lai varētu pieņemt lēmumu par filmas izvēli.
 sld-devops
 
@@ -20,14 +42,39 @@ sld-devops
 
 KIN-04	Should	Kā pircējs es vēlos redzēt filmas treileri un lietotāju vērtējumu, ja šī informācija ir pieejama, lai varētu labāk novērtēt filmu pirms biļetes pirkšanas.
 
-KIN-05	Must	Kā pircējs es vēlos izvēlēties filmas seansu un redzēt tā datumu, sākuma laiku, zāli un cenu, lai izvēlētos sev piemērotāko apmeklējuma laiku.
-ALEKSEJS
+### KIN-05	Must	Kā pircējs es vēlos izvēlēties filmas seansu un redzēt tā datumu, sākuma laiku, zāli un cenu, lai izvēlētos sev piemērotāko apmeklējuma laiku.
+#### KIN-05-01: Seansa izvele
+h2. Preconditions
+* Filma ar vairak neka 1 seansu
+
+h2. Steps
+* 1. Atver filmu
+* 2. Izvelas seansu
+
+h2. Expected
+* Seansi atteloti ar laiku un zales numuru
+* Pec izveles parvieto uz sedvietu izveli
+
+
 
 KIN-06	Must	Kā pircējs es vēlos redzēt izvēlētā seansa zāles sēdvietu plānu ar brīvajām un aizņemtajām vietām, lai varētu izvēlēties vietas.
 Zhuciis
 
-KIN-07	Must	Kā sistēmas operators es vēlos pievienot, labot un noņemt filmas, lai pircēji redzētu aktuālu filmu informāciju.
-ALEKSEJS
+### KIN-07	Must	Kā sistēmas operators es vēlos pievienot, labot un noņemt filmas, lai pircēji redzētu aktuālu filmu informāciju.
+#### KIN-07-01 Pievienot jaunu filmu
+h2. Preconditions
+* Operatora loma
+
+h2. Steps
+* 1. Atver ADD filmas formu
+* 2. Ievada nosaukumu, zanru, ilgumu
+* 3. Pievieno poster attelu
+* 4. Saglabaj
+
+h2. Expected
+* Filma saglabata
+* Paradits veiksmes prieksstats
+* Filma redzama pirceja saraksta
 
 KIN-08	Must	Kā sistēmas operators es vēlos izveidot un rediģēt seansus, norādot filmu, zāli, datumu, laiku, cenu un pieejamos biļešu veidus, lai uzturētu kinoteātra repertuāru.
 Zhuciis
