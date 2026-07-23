@@ -109,11 +109,26 @@ KIN-08	Must	Kā sistēmas operators es vēlos izveidot un rediģēt seansus, nor
 Zhuciis
 
 KIN-09	Must	Kā sistēmas operators es vēlos pārvaldīt zāļu sēdvietu plānus, lai katram seansam būtu korekts vietu izvietojums.
-sjuroz
+sjuroz Test-KIN-09 Zāļu sēdvietu plāna pārvaldīšana
+Preconditions:
+* Pārvaldības sadaļā ir zāļu sēdvietu plāni.
+
+Nav iespējams pārbaudīt, jo operatoram nav izveidota sadaļa ar zāļu sēdvietu plānu, ko varētu rediģēt.
 
 KIN-10	Should	Kā sistēmas operators es vēlos pārvaldīt filmu žanrus, lai filmu filtrēšana būtu konsekventa.
-sjuroz
+sjuroz 
+Test-KIN-10: Pievienot filmas žanru filtrā. 
+Preconditions: 
+1.Lietotājam ir piešķirtas tiesības izmantot pārvaldības sadaļu.
+2.Filmas pievienošanas kartītē ir pieejams lauks "Žanrs".
 
+Steps: 
+1. Atver pārvaldības sadaļu sistēmā.
+2. Sadaļā "Pievienot filmu" aizpildīt lauku "žanrs" un pārējos laukus ar informāciju par filmu.
+
+Expected:
+* Tiek pievienota jauna filma ar žanru.
+* Sadaļā "Filmas" redzams jauns žanrs filtrā.
 KIN-11	Must	Kā pircējs es vēlos izvēlēties vienu vai vairākas brīvas vietas vienam seansam, lai vienā pasūtījumā nopirktu biļetes sev un saviem līdzgājējiem.
 mwfymjybdy-wq
 
@@ -150,8 +165,26 @@ Linda7315
 KIN-22	Must	Kā sistēmas operators es vēlos pēc trim neveiksmīgiem paroles mēģinājumiem uz laiku bloķēt kontu un piedāvāt paroles atiestatīšanu, lai samazinātu konta uzlaušanas risku.
 Linda7315
 
-KIN-23	Must	Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
+### KIN-23	Must	Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
 aijanilendere-max
 
-KIN-24	Should	Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus, lai pārvaldītu atlaižu kampaņas.
+#### Pasūtījumu statusi
+
+h1. Pasūtījumu statusi
+Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu.
+
+h2. Testēšanas mērķis
+Pārbaudīt, ka sistēma izpilda šo prasību. Testa gadījumi tiek pievienoti šim plānam.
+
+
+### KIN-24	Should	Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus, lai pārvaldītu atlaižu kampaņas.
 aijanilendere-max
+
+#### Atlaižu kodu pārvaldība
+h1. Atlaižu kodu pārvaldība
+
+Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus.
+
+h2. Testēšanas mērķis
+
+Pārbaudīt, ka sistēma izpilda šo prasību. Testa gadījumi tiek pievienoti šim plānam.
