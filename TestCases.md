@@ -180,6 +180,7 @@ TC-21: TC-AUTH-02: Pircēja iespēja attiestatīt aizmirstu paroli
 
 h1. Preconditions
 * Sistēmā ir reģistrēts lietotājs ar esošu e-pasta adresi un paroli
+* Lietotājs nav autorizējies
 
 h1. Steps
 * Lietotājs atver autorizācijas lapu
@@ -201,7 +202,7 @@ Linda7315
 
 TC-22: TC-AUTH-03: Konta bloķēšana un paroles atiestatīšana
 h2. Preconditions
-* Lietotājs ir reģistrēts sistēma
+* Lietotājs ir reģistrēts sistēmā
 * Lietotāja konts nav bloķēts
 
 h2. Steps
@@ -229,8 +230,8 @@ h2. Steps
 h2. Expected
 * Pēc trim neveiksmīgiem paroles ievades mēģinājumiem konts tiek uz laiku bloķēts
 * Sistēma informē lietotāju par konta bloķēšanu
-* Sistēma piedāvā paroles atiestatīšanas linku
-* Lietotājs saņem atiestatīšanas linku sava e-pasta
+* Sistēma piedāvā pogu "Atiestatīt paroli"
+* Lietotājs saņem atiestatīšanas linku savā e-pastā
 * Lietotājs var veiksmīgi izveidot jaunu paroli
 
 KIN-23	Must	Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
