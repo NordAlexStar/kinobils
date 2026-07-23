@@ -141,11 +141,42 @@ BaibaGaile
 KIN-14	Must	Kā pircējs es vēlos izvēlēties biļetes veidu un redzēt pareizi aprēķinātu kopējo cenu, lai pirms maksājuma saprastu pasūtījuma summu.
 BaibaGaile
 
-KIN-15	Should	Kā pircējs es vēlos ievadīt atlaižu kodu un saņemt saprotamu paziņojumu, ja kods nav derīgs, lai varētu izmantot man pieejamās atlaides.
+### KIN-15	Should	Kā pircējs es vēlos ievadīt atlaižu kodu un saņemt saprotamu paziņojumu, ja kods nav derīgs, lai varētu izmantot man pieejamās atlaides.
 pokyxrose
 
-KIN-16	Must	Kā pircējs es vēlos samaksāt ar atbalstītu maksājuma veidu un atkārtot maksājumu, ja pirmais mēģinājums nav izdevies, lai pabeigtu biļešu iegādi.
+#### KIN-15-01: Derīgs atlaides kods
+h2. Preconditions
+* Grozā ir pievienota kino biļete un ir pieejams atlaides koda ievades lauks
+
+h2. Steps
+* 1. Ievadīt atlaides kodu "blegh"
+* 2. Nospiest pogu "piemērot"
+
+h2. Expected
+* Sistēma pieņem ievadīto atlaides kodu
+* Atlaide tiek piemērota pasūtījumam
+* Rēķina summa tiek samazināta atbilstoši atlaides koda nosacījumiem
+* Sistēma parāda ziņojumu par piemēroto atlaidi
+
+#### KIN-15-02: Nederīgs atlaides kods
+h2. Preconditions
+* Grozā ir pievienota kino biļete un ir pieejams atlaides koda ievades lauks
+
+h2. Steps
+* 1. Ievadīt atlaides kodu "bleg"
+* 2. Nospiest pogu "piemērot"
+
+h2. Expected
+* Sistēma nepieņem ievadīto atlaides kodu
+* Atlaide netiek piemērota
+* Sistēma parāda ziņojumu kā nederīgs atlaides kods
+* Pircējs var turpināt pasūtījuma noformēšanu
+
+### KIN-16	Must	Kā pircējs es vēlos samaksāt ar atbalstītu maksājuma veidu un atkārtot maksājumu, ja pirmais mēģinājums nav izdevies, lai pabeigtu biļešu iegādi.
 pokyxrose
+
+#### KIN-16-01
+
 
 KIN-17	Must	Kā pircējs es vēlos saņemt apmaksātas biļetes e-pastā ar unikālu QR kodu, lai varētu tās uzrādīt pie ieejas kinoteātrī.
 anasteisa124
