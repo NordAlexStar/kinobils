@@ -37,10 +37,10 @@ sjuroz
 
 KIN-10	Should	Kā sistēmas operators es vēlos pārvaldīt filmu žanrus, lai filmu filtrēšana būtu konsekventa.
 sjuroz 
-Test-KIN-10: Pievienot žanru filmai. 
+Test-KIN-10: Pievienot filmas žanru filtrā. 
 Preconditions: 
 1.Lietotājam ir piešķirtas tiesības izmantot pārvaldības sadaļu.
-2.Ir pieejams lauks "Žanrs" aizpildīšanai.
+2.Filmas pievienošanas kartītē ir pieejams lauks "Žanrs".
 
 Steps: 
 1. Atver pārvaldības sadaļu sistēmā.
