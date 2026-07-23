@@ -37,8 +37,37 @@ h2. Expected
 KIN-02	Must	Kā pircējs es vēlos apskatīt filmas detalizētu informāciju — nosaukumu, īsu aprakstu, žanru, ilgumu minūtēs, vecuma ierobežojumu, valodu un subtitru valodu — lai varētu pieņemt lēmumu par filmas izvēli.
 sld-devops
 
+h2. Preconditions
+* Datu baze satur vismaz 1 filmu, lai būtu kur uzspiest "detalizācija informācija"
+
+h2. Steps
+* 1. Atvērt filmas detalizētu informāciju
+* 2. Ir redzama prasībās minētā detalizētā informācija - 
+	2.1. nosaukumu, piemēram, Mēness arhīvs,
+	2.2. īsu aprakstu, piemēram, Uz pamestas Mēness stacijas atstāta balss ieraksta atklāj stāstu, kuru neviens nebija paredzējis dzirdēt.
+	2.3 žanru, piemēram, ZINĀTNISKĀ FANTASTIKA
+	2.4 ilgumu minūtēs, piemēram, 132 min
+	2.5 vecuma ierobežojumu, piemēram, 12+
+	2.6 valodu, piemēram, Angļu
+	2.7 subtitru valodu, piemēram, Subtitri: Latviešu
+
+h2. Expected
+* Ir redzama visa soļos minētā detalizētā informācija
+
+
 KIN-03	Should	Kā pircējs es vēlos filtrēt filmas pēc žanra un rādīt tikai filmas ar šodienas seansiem, lai ātrāk atrastu piemērotu filmu.
 sld-devops
+
+h2. Preconditions
+* 1. Tiek paradīta visā filmu sarakstā vismaz 4 filmas, kurā katra no tām ir atsevišķā žanrā 
+* 2. Kurā vismaz 1 no tām ir šodien, lai pārbaudītu, vai filtrs darbojas pareizi
+
+h2. Steps
+* 1. Uzspiest uz man intersēšo žanru
+* 2. Uzspiest uz pogas "Šodien"
+
+h2. Expected
+* Filmu sarakstā redzēt filmu/filmas, kuras ir šodien, izvēlētājā žanrā
 
 KIN-04	Should	Kā pircējs es vēlos redzēt filmas treileri un lietotāju vērtējumu, ja šī informācija ir pieejama, lai varētu labāk novērtēt filmu pirms biļetes pirkšanas.
 
