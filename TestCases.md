@@ -12,36 +12,14 @@ h2. Expected
 * Tiek paradits 5+ filmu saraksts
 * Katrai filmai redzams nosaukums, zanrs, gads
 
-#### KIN-01-02: Tukss saraksts (nav filmu)
-h2. Preconditions
-* Visas filmas izdzestas
-
-h2. Steps
-* 1. Atver filmu sarakstu
-
-h2. Expected
-* Paradits draudzigs kjudas prieksstats
-* Nav redzama 500/404 kjuda
-
-#### KIN-01-03: Filmas detalu lapa
-h2. Preconditions
-* Ir filma ar pilnu informaciju
-
-h2. Steps
-* 1. Uzklikskina uz filmas
-
-h2. Expected
-* Tiek atverta filmas detalu lapa
-* Visi lauki atteloti korekti
-
 KIN-02	Must	Kā pircējs es vēlos apskatīt filmas detalizētu informāciju — nosaukumu, īsu aprakstu, žanru, ilgumu minūtēs, vecuma ierobežojumu, valodu un subtitru valodu — lai varētu pieņemt lēmumu par filmas izvēli.
 sld-devops
-
+### KIN-02-01
 h2. Preconditions
 * Datu baze satur vismaz 1 filmu, lai būtu kur uzspiest "detalizācija informācija"
 
 h2. Steps
-* 1. Atvērt filmas detalizētu informāciju
+* 1. Atvērt filmas detalizētu informāciju uzspiežot uz filmas attēla
 * 2. Ir redzama prasībās minētā detalizētā informācija - 
 	2.1. nosaukumu, piemēram, Mēness arhīvs,
 	2.2. īsu aprakstu, piemēram, Uz pamestas Mēness stacijas atstāta balss ieraksta atklāj stāstu, kuru neviens nebija paredzējis dzirdēt.
@@ -54,6 +32,15 @@ h2. Steps
 h2. Expected
 * Ir redzama visa soļos minētā detalizētā informācija
 
+### KIN-02-02
+h2. Preconditions
+* Datu baze nesatur nevienu filmu
+
+h2. Steps
+* 1. Atvērt pārlūku -> Uzreiz galvenajā lapā nav nevienas redzamu filmu seansu.
+
+h2. Expected
+* Nav pieejama detalizētas informācijas lapa
 
 KIN-03	Should	Kā pircējs es vēlos filtrēt filmas pēc žanra un rādīt tikai filmas ar šodienas seansiem, lai ātrāk atrastu piemērotu filmu.
 sld-devops
@@ -178,8 +165,26 @@ Linda7315
 KIN-22	Must	Kā sistēmas operators es vēlos pēc trim neveiksmīgiem paroles mēģinājumiem uz laiku bloķēt kontu un piedāvāt paroles atiestatīšanu, lai samazinātu konta uzlaušanas risku.
 Linda7315
 
-KIN-23	Must	Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
+### KIN-23	Must	Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
 aijanilendere-max
 
-KIN-24	Should	Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus, lai pārvaldītu atlaižu kampaņas.
+#### Pasūtījumu statusi
+
+h1. Pasūtījumu statusi
+Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu.
+
+h2. Testēšanas mērķis
+Pārbaudīt, ka sistēma izpilda šo prasību. Testa gadījumi tiek pievienoti šim plānam.
+
+
+### KIN-24	Should	Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus, lai pārvaldītu atlaižu kampaņas.
 aijanilendere-max
+
+#### Atlaižu kodu pārvaldība
+h1. Atlaižu kodu pārvaldība
+
+Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus.
+
+h2. Testēšanas mērķis
+
+Pārbaudīt, ka sistēma izpilda šo prasību. Testa gadījumi tiek pievienoti šim plānam.
