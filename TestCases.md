@@ -68,11 +68,80 @@ alipal123
 KIN-20	Must	Kā pircējs es vēlos iegādāties biļeti bez reģistrācijas, lai varētu palikt anonīms, vienlaikus saņemot biļeti e-pastā.
 alipal123
 
-KIN-21	Must	Kā reģistrēts pircējs es vēlos autorizēties ar e-pastu un paroli, kā arī atiestatīt aizmirstu paroli, lai varētu droši piekļūt savam profilam.
+### KIN-21	Must	Kā reģistrēts pircējs es vēlos autorizēties ar e-pastu un paroli, kā arī atiestatīt aizmirstu paroli, lai varētu droši piekļūt savam profilam.
 Linda7315
 
-KIN-22	Must	Kā sistēmas operators es vēlos pēc trim neveiksmīgiem paroles mēģinājumiem uz laiku bloķēt kontu un piedāvāt paroles atiestatīšanu, lai samazinātu konta uzlaušanas risku.
+TC-21: TC-AUTH-01: Pircēja autorizācija
+h1. Preconditions
+* Sistēmā ir reģistrēts lietotājs ar esošu e-pasta adresi un paroli 
+
+h1. Steps
+* Lietotājs atver autorizācijas lapu 
+* Lietotājs ievada e-pasta adresi 
+* Lietotājs ievada paroli
+* Lietotājs nospiež pogu - autorizēties
+
+h2. Expected
+* Lietotājs tiek veiksmīgi autorizēts sistēmā
+* Lietotājs tiek novirzīts uz savu profilu
+
+TC-21: TC-AUTH-02: Pircēja iespēja atiestatīt aizmirstu paroli
+
+h1. Preconditions
+* Sistēmā ir reģistrēts lietotājs ar esošu e-pasta adresi un paroli 
+
+h1. Steps
+* Lietotājs atver autorizācijas lapu 
+* Lietotājs nospiež pogu "Aizmirsu paroli"
+* Lietotājs ievada savu e-pasta adresi 
+* Lietotājs nospiež pogu "Atiestatīt paroli" 
+* Lietotājs saņem paroles atiestatīšanas linku e-pastā
+* Lietotājs atver saņemto saiti
+* Lietotājs ievada jaunu paroli
+* Lietotājs apstiprina jauno paroli
+
+h2. Expected
+* Jaunā parole tiek veiksmīgi saglabāta
+* Lietotājs var autorizēties ar jauno paroli
+
+
+### KIN-22	Must	Kā sistēmas operators es vēlos pēc trim neveiksmīgiem paroles mēģinājumiem uz laiku bloķēt kontu un piedāvāt paroles atiestatīšanu, lai samazinātu konta uzlaušanas risku.
 Linda7315
+
+TC-22: TC-AUTH-03: Konta boķešana un paroles atiestatīšana
+h2. Preconditions
+* Lietotājs ir reģistrēts sistēma
+* Lietotāja konts nav bloķets
+
+h2. Steps
+
+* Lietotājs atver autorizācijas lapu
+* Lietotājs ievada e-pasta adresi
+* Lietotājs ievada nederīgu paroli
+* Lietotājs nospiež pogu - autorizēties
+* Sistēma informē lietotāju par neveiksmīgu autorizācijas mēģinājumu
+* Lietotājs atkārtoti ievada reģistrēto e-pasta adresi
+* Lietotājs atkārtoti ievada nederīgu paroli
+* Lietotājs nospiež pogu - autorizēties
+* Sistēma informē lietotāju par neveiksmīgu autorizācijas mēģinājumu
+* Lietotājs trešo reizi ievada reģistrēto e-pasta adresi
+* Lietotājs ievada nederīgu paroli
+* Lietotājs nospiež pogu - autorizēties
+* Sistēma informē lietotāju par neveiksmīgu autorizācijas mēģinājumu un konta bloķešanu
+* Lietotājs nospiež pogu "Atiestatīt paroli" 
+* Lietotājs ievada savu e-pasta adresi 
+* Lietotājs ievada savu paroli
+* Lietotājs saņem paroles atiestatīšanas linku e-pastā
+* Lietotājs atver saņemto saiti
+* Lietotājs ievada jaunu paroli
+* Lietotājs apstiprina jauno paroli
+
+h2. Expected
+* Pēc trim neveiksmīgiem paroles ievades mēģinājumiem konts tiek uz laiku bloķets
+* Sistēma informē lietotāju par konta bloķešanu 
+* Sistēma piedāvā paroles atiestatīšanas linku 
+* Lietotājs saņem atiestatīšanas linku sava e-pasta
+* Lietotājs var veiksmīgi izveidot jaunu paroli
 
 KIN-23	Must	Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
 aijanilendere-max
