@@ -90,7 +90,7 @@ KIN-06	Must	Kā pircējs es vēlos redzēt izvēlētā seansa zāles sēdvietu p
 Zhuciis
 
 ### KIN-07	Must	Kā sistēmas operators es vēlos pievienot, labot un noņemt filmas, lai pircēji redzētu aktuālu filmu informāciju.
-#### KIN-07-01 Pievienot jaunu filmu
+#### KIN-07-01: Pievienot jaunu filmu
 h2. Preconditions
 * Operatora loma
 
@@ -104,6 +104,19 @@ h2. Expected
 * Filma saglabata
 * Paradits veiksmes prieksstats
 * Filma redzama pirceja saraksta
+
+#### KIN-07-02: Rediget - neaizpildits obligatais lauks
+h2. Preconditions
+* Esosa filma
+
+h2. Steps
+* 1. Atver filmas redigesanas formu
+* 2. Notira nosaukumu
+* 3. Saglabaj
+
+h2. Expected
+* Paradits validacijas kjuda: "Nosaukums ir obligats"
+* Filma netiek saglabata ar tuksu nosaukumu
 
 KIN-08	Must	Kā sistēmas operators es vēlos izveidot un rediģēt seansus, norādot filmu, zāli, datumu, laiku, cenu un pieejamos biļešu veidus, lai uzturētu kinoteātra repertuāru.
 Zhuciis
