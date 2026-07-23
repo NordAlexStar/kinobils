@@ -1,6 +1,6 @@
-KIN-01	Must	Kā pircējs es vēlos redzēt pieejamo filmu sarakstu alfabētiskā secībā, lai ātri atrastu interesējošo filmu.
+### KIN-01	Must	Kā pircējs es vēlos redzēt pieejamo filmu sarakstu alfabētiskā secībā, lai ātri atrastu interesējošo filmu.
 
-TC-26: TC-FILM-01: Saraksts tiek ieladets
+#### KIN-01-01: Saraksts tiek ieladets
 h2. Preconditions
 * Datu baze satur 5+ filmas
 
@@ -14,20 +14,96 @@ h2. Expected
 
 KIN-02	Must	Kā pircējs es vēlos apskatīt filmas detalizētu informāciju — nosaukumu, īsu aprakstu, žanru, ilgumu minūtēs, vecuma ierobežojumu, valodu un subtitru valodu — lai varētu pieņemt lēmumu par filmas izvēli.
 sld-devops
+### KIN-02-01
+h2. Preconditions
+* Datu baze satur vismaz 1 filmu, lai būtu kur uzspiest "detalizācija informācija"
+
+h2. Steps
+* 1. Atvērt filmas detalizētu informāciju uzspiežot uz filmas attēla
+* 2. Ir redzama prasībās minētā detalizētā informācija - 
+	2.1. nosaukumu, piemēram, Mēness arhīvs,
+	2.2. īsu aprakstu, piemēram, Uz pamestas Mēness stacijas atstāta balss ieraksta atklāj stāstu, kuru neviens nebija paredzējis dzirdēt.
+	2.3 žanru, piemēram, ZINĀTNISKĀ FANTASTIKA
+	2.4 ilgumu minūtēs, piemēram, 132 min
+	2.5 vecuma ierobežojumu, piemēram, 12+
+	2.6 valodu, piemēram, Angļu
+	2.7 subtitru valodu, piemēram, Subtitri: Latviešu
+
+h2. Expected
+* Ir redzama visa soļos minētā detalizētā informācija
+
+### KIN-02-02
+h2. Preconditions
+* Datu baze nesatur nevienu filmu
+
+h2. Steps
+* 1. Atvērt pārlūku -> Uzreiz galvenajā lapā nav nevienas redzamu filmu seansu.
+
+h2. Expected
+* Nav pieejama detalizētas informācijas lapa
 
 KIN-03	Should	Kā pircējs es vēlos filtrēt filmas pēc žanra un rādīt tikai filmas ar šodienas seansiem, lai ātrāk atrastu piemērotu filmu.
 sld-devops
 
+h2. Preconditions
+* 1. Tiek paradīta visā filmu sarakstā vismaz 4 filmas, kurā katra no tām ir atsevišķā žanrā 
+* 2. Kurā vismaz 1 no tām ir šodien, lai pārbaudītu, vai filtrs darbojas pareizi
+
+h2. Steps
+* 1. Uzspiest uz man intersēšo žanru
+* 2. Uzspiest uz pogas "Šodien"
+
+h2. Expected
+* Filmu sarakstā redzēt filmu/filmas, kuras ir šodien, izvēlētājā žanrā
+
 KIN-04	Should	Kā pircējs es vēlos redzēt filmas treileri un lietotāju vērtējumu, ja šī informācija ir pieejama, lai varētu labāk novērtēt filmu pirms biļetes pirkšanas.
 
-KIN-05	Must	Kā pircējs es vēlos izvēlēties filmas seansu un redzēt tā datumu, sākuma laiku, zāli un cenu, lai izvēlētos sev piemērotāko apmeklējuma laiku.
-ALEKSEJS
+### KIN-05	Must	Kā pircējs es vēlos izvēlēties filmas seansu un redzēt tā datumu, sākuma laiku, zāli un cenu, lai izvēlētos sev piemērotāko apmeklējuma laiku.
+#### KIN-05-01: Seansa izvele
+h2. Preconditions
+* Filma ar vairak neka 1 seansu
+
+h2. Steps
+* 1. Atver filmu
+* 2. Izvelas seansu
+
+h2. Expected
+* Seansi atteloti ar laiku un zales numuru
+* Pec izveles parvieto uz sedvietu izveli
+
+
 
 KIN-06	Must	Kā pircējs es vēlos redzēt izvēlētā seansa zāles sēdvietu plānu ar brīvajām un aizņemtajām vietām, lai varētu izvēlēties vietas.
 Zhuciis
 
-KIN-07	Must	Kā sistēmas operators es vēlos pievienot, labot un noņemt filmas, lai pircēji redzētu aktuālu filmu informāciju.
-ALEKSEJS
+### KIN-07	Must	Kā sistēmas operators es vēlos pievienot, labot un noņemt filmas, lai pircēji redzētu aktuālu filmu informāciju.
+#### KIN-07-01: Pievienot jaunu filmu
+h2. Preconditions
+* Operatora loma
+
+h2. Steps
+* 1. Atver ADD filmas formu
+* 2. Ievada nosaukumu, zanru, ilgumu
+* 3. Pievieno poster attelu
+* 4. Saglabaj
+
+h2. Expected
+* Filma saglabata
+* Paradits veiksmes prieksstats
+* Filma redzama pirceja saraksta
+
+#### KIN-07-02: Rediget - neaizpildits obligatais lauks
+h2. Preconditions
+* Esosa filma
+
+h2. Steps
+* 1. Atver filmas redigesanas formu
+* 2. Notira nosaukumu
+* 3. Saglabaj
+
+h2. Expected
+* Paradits validacijas kjuda: "Nosaukums ir obligats"
+* Filma netiek saglabata ar tuksu nosaukumu
 
 KIN-08	Must	Kā sistēmas operators es vēlos izveidot un rediģēt seansus, norādot filmu, zāli, datumu, laiku, cenu un pieejamos biļešu veidus, lai uzturētu kinoteātra repertuāru.
 Zhuciis
