@@ -33,11 +33,22 @@ KIN-08	Must	Kā sistēmas operators es vēlos izveidot un rediģēt seansus, nor
 Zhuciis
 
 KIN-09	Must	Kā sistēmas operators es vēlos pārvaldīt zāļu sēdvietu plānus, lai katram seansam būtu korekts vietu izvietojums.
-sjuroz
+sjuroz 
 
 KIN-10	Should	Kā sistēmas operators es vēlos pārvaldīt filmu žanrus, lai filmu filtrēšana būtu konsekventa.
-sjuroz
+sjuroz 
+Test-KIN-10: Pievienot žanru filmai. 
+Preconditions: 
+1.Lietotājam ir piešķirtas tiesības izmantot pārvaldības sadaļu.
+2.Ir pieejams lauks "Žanrs" aizpildīšanai.
 
+Steps: 
+1. Atver pārvaldības sadaļu sistēmā.
+2. Sadaļā "Pievienot filmu" aizpildīt lauku "žanrs" un pārējos laukus ar informāciju par filmu.
+
+Expected:
+* Tiek pievienota jauna filma ar žanru.
+* Sadaļā "Filmas" redzams jauns žanrs filtrā.
 KIN-11	Must	Kā pircējs es vēlos izvēlēties vienu vai vairākas brīvas vietas vienam seansam, lai vienā pasūtījumā nopirktu biļetes sev un saviem līdzgājējiem.
 mwfymjybdy-wq
 
