@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/Docs/">
+    <File Path="Backlog/vienotais-backlog-kino.md" />
+    <File Path="TestCases.md" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/KinoRezervacija.Web/KinoRezervacija.Web.csproj" />
   </Folder>
