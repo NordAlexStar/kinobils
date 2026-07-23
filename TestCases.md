@@ -12,9 +12,9 @@ h2. Expected
 * Tiek paradits 5+ filmu saraksts
 * Katrai filmai redzams nosaukums, zanrs, gads
 
-KIN-02	Must	Kā pircējs es vēlos apskatīt filmas detalizētu informāciju — nosaukumu, īsu aprakstu, žanru, ilgumu minūtēs, vecuma ierobežojumu, valodu un subtitru valodu — lai varētu pieņemt lēmumu par filmas izvēli.
+### KIN-02	Must	Kā pircējs es vēlos apskatīt filmas detalizētu informāciju — nosaukumu, īsu aprakstu, žanru, ilgumu minūtēs, vecuma ierobežojumu, valodu un subtitru valodu — lai varētu pieņemt lēmumu par filmas izvēli.
 sld-devops
-### KIN-02-01
+#### KIN-02-01
 h2. Preconditions
 * Datu baze satur vismaz 1 filmu, lai būtu kur uzspiest "detalizācija informācija"
 
@@ -32,7 +32,7 @@ h2. Steps
 h2. Expected
 * Ir redzama visa soļos minētā detalizētā informācija
 
-### KIN-02-02
+#### KIN-02-02
 h2. Preconditions
 * Datu baze nesatur nevienu filmu
 
