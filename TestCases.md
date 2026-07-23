@@ -122,7 +122,11 @@ KIN-08	Must	Kā sistēmas operators es vēlos izveidot un rediģēt seansus, nor
 Zhuciis
 
 KIN-09	Must	Kā sistēmas operators es vēlos pārvaldīt zāļu sēdvietu plānus, lai katram seansam būtu korekts vietu izvietojums.
-sjuroz 
+sjuroz Test-KIN-09 Zāļu sēdvietu plāna pārvaldīšana
+Preconditions:
+* Pārvaldības sadaļā ir zāļu sēdvietu plāni.
+
+Nav iespējams pārbaudīt, jo operatoram nav izveidota sadaļa ar zāļu sēdvietu plānu, ko varētu rediģēt.
 
 KIN-10	Should	Kā sistēmas operators es vēlos pārvaldīt filmu žanrus, lai filmu filtrēšana būtu konsekventa.
 sjuroz 
