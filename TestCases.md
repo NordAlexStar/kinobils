@@ -175,7 +175,7 @@ h2. Expected
 ### KIN-16	Must	Kā pircējs es vēlos samaksāt ar atbalstītu maksājuma veidu un atkārtot maksājumu, ja pirmais mēģinājums nav izdevies, lai pabeigtu biļešu iegādi.
 pokyxrose
 
-#### KIN-16-01
+#### KIN-16-01: Veiksmīga maksājuma pārbaude
 h2. Preconditions
 Grozā ir pievienota kino biļete un pircējam ir pieejams atbalstīts maksājuma veids
 
