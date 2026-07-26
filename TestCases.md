@@ -176,7 +176,34 @@ h2. Expected
 pokyxrose
 
 #### KIN-16-01
+h2. Preconditions
+Grozā ir pievienota kino biļete un pircējam ir pieejams atbalstīts maksājuma veids
 
+h2. Steps
+* 1. Izvēlēties maksājuma veidu
+* 2. Ievadīt nepieciešamos maksājuma datus
+* 3. Nospiest pogu "Maksāt"
+
+h2. Expected
+* Sistēma veiksmīgi apstrādā maksājumu
+* Pasūtījums tiek apstiprināts
+* Pircējs saņem paziņojumu par veiksmīgu maksājumu
+
+#### KIN-16-02: Neveiksmīga maksājuma pārbaude
+h2. Preconditions
+Grozā ir pievienota kino biļete un pircējam ir pieejams atbalstīts maksājuma veids
+
+h2. Steps
+* 1. Izvēlēties maksājuma veidu
+* 2. Veikt maksājumu ar nederīgiem maksājuma datiem
+* 3. Pārbaudīt sistēmas parādīto kļūdas ziņojumu
+* 4. Atkārtoti mēģināt veikt maksājumu ar pareiziem datiem
+	
+h2. Expected
+* Sistēma parāda ziņojumu par neveiksmīgu maksājumu
+* Pasūtījums netiek noformēts līdz veiksmīgai apmaksai
+* Pircējam ir iespēja atkārtoti mēģināt veikt maksājumu
+* Pircējs saņem paziņojumu par veiksmīgu maksājumu
 
 KIN-17	Must	Kā pircējs es vēlos saņemt apmaksātas biļetes e-pastā ar unikālu QR kodu, lai varētu tās uzrādīt pie ieejas kinoteātrī.
 anasteisa124
