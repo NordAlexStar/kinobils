@@ -22,3 +22,19 @@ h2. Expected
 * Ir redzama visa soļos minētā detalizētā informācija -> FAILED
 
 COMMENTS: Nav redzams pilnā garumā īsais filmas apraksts, filmas attēls pārklājas virs teksta.
+
+TC: KIN-03 Kā pircējs es vēlos filtrēt filmas pēc žanra un rādīt tikai filmas ar šodienas seansiem, lai ātrāk atrastu piemērotu filmu.
+Date: 27.07.2026 19:04
+Status: SUCCEED
+
+h2. Preconditions
+* 1. Tiek paradīta visā filmu sarakstā vismaz 4 filmas, kurā katra no tām ir atsevišķā žanrā -> OK
+* 2. Kurā vismaz 1 no tām ir šodien, lai pārbaudītu, vai filtrs darbojas pareizi -> OK 
+
+h2. Steps
+* 1. Uzspiest uz man intersēšo žanru -> OK
+* 2. Uzspiest uz pogas "Šodien" -> OK
+
+h2. Expected
+* Filmu sarakstā redzēt filmu/filmas, kuras ir šodien, izvēlētājā žanrā -> OK
+
