@@ -5,6 +5,7 @@
   </Folder>
   <Folder Name="/Docs/Bugs/">
     <File Path="Aleksejs_Semjonovs_bug_reports.md" />
+    <File Path="Oļegs_Zagrajs_bug_reports.md" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/KinoRezervacija.Web/KinoRezervacija.Web.csproj" />
