@@ -29,6 +29,23 @@ TC: KIN-03-01 27.07.2026 18:28
 VERSION: eb82ec58
 Status: PASSED
 
+TC: KIN-04-01 27.07.2026 20:05
+VERSION: 29d989fc
+Status: FAILED
+BUG: Pie filmas detalizētas informācijas nav video treilera un lietotāja vērtējuma.
+
+Preconditions: 
+1. Repertuārā ir attēlota vismaz 1 filma. - OK
+
+Steps:
+1. Nospiest uz filmas attēlu, lai redzētu detalizētu informāciju. - OK
+2. Nospiest uz video treilera atskaņošanas pogas. - FAILED
+3. Apskatīt lietotāju vērtējumu par filmu. - FAILED
+
+Expected:
+Pie filmas detalizētas informācijas ir redzams video treileris un lietotāju vērtējums.
+
+
 TC: KIN-05-01 27.07.2026 18:35
 VERSION: eb82ec58
 Status: PASSED
@@ -36,3 +53,4 @@ Status: PASSED
 TC: KIN-07-01 27.07.2026 18:35
 VERSION: eb82ec58
 Status: PASSED
+
