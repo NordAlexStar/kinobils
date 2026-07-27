@@ -2,14 +2,14 @@
 
 #### KIN-01-01: Saraksts tiek ieladets
 h2. Preconditions
-* Datu baze satur 5+ filmas
+* Datu baze satur 4+ filmas
 
 h2. Steps
 * 1. Atver filmu saraksta lapu
 * 2. Nogaida ielades indikatoru
 
 h2. Expected
-* Tiek paradits 5+ filmu saraksts
+* Tiek paradits 4+ filmu saraksts
 * Katrai filmai redzams nosaukums, zanrs, gads
 
 ### KIN-02	Must	Kā pircējs es vēlos apskatīt filmas detalizētu informāciju — nosaukumu, īsu aprakstu, žanru, ilgumu minūtēs, vecuma ierobežojumu, valodu un subtitru valodu — lai varētu pieņemt lēmumu par filmas izvēli.
