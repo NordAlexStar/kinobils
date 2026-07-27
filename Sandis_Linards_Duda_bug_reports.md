@@ -28,6 +28,11 @@ Status: FIXED
 FIXED IN VERSION: 0.1.2
 Filmas informācijas teksta laukums pielāgots, lai plakāts neaizsegtu aprakstu.
 
+REVIEW OF RESOLUTION:
+Status: FAILED
+BUG: Teksts palien zem attēla situācijā, kad logs nav atvērts pilnībā, un ir samazināts par daļu no ekrāna - https://imgur.com/a/4udOQQi. Lietotājam jāredz pilns teksts pat, ja lieto pārlūku šādā ne pilnā ekrānā.
+
+
 TC: KIN-03 Kā pircējs es vēlos filtrēt filmas pēc žanra un rādīt tikai filmas ar šodienas seansiem, lai ātrāk atrastu piemērotu filmu.
 Date: 27.07.2026 19:04
 Status: SUCCEED
