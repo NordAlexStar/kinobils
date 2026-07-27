@@ -2,14 +2,14 @@
 
 #### KIN-01-01: Saraksts tiek ieladets
 h2. Preconditions
-* Datu baze satur 5+ filmas
+* Datu baze satur 4+ filmas
 
 h2. Steps
 * 1. Atver filmu saraksta lapu
 * 2. Nogaida ielades indikatoru
 
 h2. Expected
-* Tiek paradits 5+ filmu saraksts
+* Tiek paradits 4+ filmu saraksts
 * Katrai filmai redzams nosaukums, zanrs, gads
 
 ### KIN-02	Must	Kā pircējs es vēlos apskatīt filmas detalizētu informāciju — nosaukumu, īsu aprakstu, žanru, ilgumu minūtēs, vecuma ierobežojumu, valodu un subtitru valodu — lai varētu pieņemt lēmumu par filmas izvēli.
@@ -141,11 +141,69 @@ BaibaGaile
 KIN-14	Must	Kā pircējs es vēlos izvēlēties biļetes veidu un redzēt pareizi aprēķinātu kopējo cenu, lai pirms maksājuma saprastu pasūtījuma summu.
 BaibaGaile
 
-KIN-15	Should	Kā pircējs es vēlos ievadīt atlaižu kodu un saņemt saprotamu paziņojumu, ja kods nav derīgs, lai varētu izmantot man pieejamās atlaides.
+### KIN-15	Should	Kā pircējs es vēlos ievadīt atlaižu kodu un saņemt saprotamu paziņojumu, ja kods nav derīgs, lai varētu izmantot man pieejamās atlaides.
 pokyxrose
 
-KIN-16	Must	Kā pircējs es vēlos samaksāt ar atbalstītu maksājuma veidu un atkārtot maksājumu, ja pirmais mēģinājums nav izdevies, lai pabeigtu biļešu iegādi.
+#### KIN-15-01: Derīgs atlaides kods
+h2. Preconditions
+* Grozā ir pievienota kino biļete un ir pieejams atlaides koda ievades lauks
+
+h2. Steps
+* 1. Ievadīt atlaides kodu "blegh"
+* 2. Nospiest pogu "piemērot"
+
+h2. Expected
+* Sistēma pieņem ievadīto atlaides kodu
+* Atlaide tiek piemērota pasūtījumam
+* Rēķina summa tiek samazināta atbilstoši atlaides koda nosacījumiem
+* Sistēma parāda ziņojumu par piemēroto atlaidi
+
+#### KIN-15-02: Nederīgs atlaides kods
+h2. Preconditions
+* Grozā ir pievienota kino biļete un ir pieejams atlaides koda ievades lauks
+
+h2. Steps
+* 1. Ievadīt atlaides kodu "bleg"
+* 2. Nospiest pogu "piemērot"
+
+h2. Expected
+* Sistēma nepieņem ievadīto atlaides kodu
+* Atlaide netiek piemērota
+* Sistēma parāda ziņojumu kā nederīgs atlaides kods
+* Pircējs var turpināt pasūtījuma noformēšanu
+
+### KIN-16	Must	Kā pircējs es vēlos samaksāt ar atbalstītu maksājuma veidu un atkārtot maksājumu, ja pirmais mēģinājums nav izdevies, lai pabeigtu biļešu iegādi.
 pokyxrose
+
+#### KIN-16-01: Veiksmīga maksājuma pārbaude
+h2. Preconditions
+Grozā ir pievienota kino biļete un pircējam ir pieejams atbalstīts maksājuma veids
+
+h2. Steps
+* 1. Izvēlēties maksājuma veidu
+* 2. Ievadīt nepieciešamos maksājuma datus
+* 3. Nospiest pogu "Maksāt"
+
+h2. Expected
+* Sistēma veiksmīgi apstrādā maksājumu
+* Pasūtījums tiek apstiprināts
+* Pircējs saņem paziņojumu par veiksmīgu maksājumu
+
+#### KIN-16-02: Neveiksmīga maksājuma pārbaude
+h2. Preconditions
+Grozā ir pievienota kino biļete un pircējam ir pieejams atbalstīts maksājuma veids
+
+h2. Steps
+* 1. Izvēlēties maksājuma veidu
+* 2. Veikt maksājumu ar nederīgiem maksājuma datiem
+* 3. Pārbaudīt sistēmas parādīto kļūdas ziņojumu
+* 4. Atkārtoti mēģināt veikt maksājumu ar pareiziem datiem
+	
+h2. Expected
+* Sistēma parāda ziņojumu par neveiksmīgu maksājumu
+* Pasūtījums netiek noformēts līdz veiksmīgai apmaksai
+* Pircējam ir iespēja atkārtoti mēģināt veikt maksājumu
+* Pircējs saņem paziņojumu par veiksmīgu maksājumu
 
 KIN-17	Must	Kā pircējs es vēlos saņemt apmaksātas biļetes e-pastā ar unikālu QR kodu, lai varētu tās uzrādīt pie ieejas kinoteātrī.
 anasteisa124
@@ -234,29 +292,112 @@ h2. Expected
 * Lietotājs saņem atiestatīšanas linku savā e-pastā
 * Lietotājs var veiksmīgi izveidot jaunu paroli
 
-KIN-23	Must	Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
-=======
-### KIN-23	Must	Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
->>>>>>> 92bc878c85d8507711c9b4a91f202c78309c0ee7
-aijanilendere-max
+### KIN-23  Must  Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
+aijanilendere-max 
 
-#### Pasūtījumu statusi
+TP-28: KIN-23: Pasūtījumu statusi
 
-h1. Pasūtījumu statusi
-Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu.
+#### KIN-23-01: Veiksmīga pasūtījuma statusu attēlošana
 
-h2. Testēšanas mērķis
-Pārbaudīt, ka sistēma izpilda šo prasību. Testa gadījumi tiek pievienoti šim plānam.
+h2. Preconditions
+* Sistēmas operators ir autorizējies sistēmā
+* Sistēmā ir izveidots pasūtījums
+* Pasūtījuma apmaksa ir veiksmīgi pabeigta
+* Biļete ir nosūtīta pircējam
 
+h2. Steps
+* 1. Atvērt sadaļu "Pasūtījumi"
+* 2. Atrast nepieciešamo pasūtījumu
+* 3. Atvērt pasūtījuma informāciju
+
+h2. Expected
+* Sistēma parāda izvēlētā pasūtījuma statusu
+* Sistēma parāda maksājuma statusu "Apmaksāts"
+* Sistēma parāda biļetes nosūtīšanas statusu "Nosūtīta"
+* Visi statusi ir skaidri saprotami un attiecas uz izvēlēto pasūtījumu
+
+#### KIN-23-02: Neveiksmīga maksājuma statusa attēlošana
+
+h2. Preconditions
+* Sistēmas operators ir autorizējies sistēmā
+* Sistēmā ir izveidots pasūtījums
+* Pasūtījuma apmaksa nav veiksmīgi pabeigta
+* Biļete pircējam nav nosūtīta
+
+h2. Steps
+* 1. Atvērt sadaļu "Pasūtījumi"
+* 2. Atrast pasūtījumu ar neveiksmīgu maksājumu
+* 3. Atvērt pasūtījuma informāciju
+
+h2. Expected
+* Sistēma parāda izvēlētā pasūtījuma statusu
+* Sistēma parāda maksājuma statusu "Neizdevies" vai citu prasībās noteikto statusu
+* Sistēma parāda biļetes nosūtīšanas statusu "Nav nosūtīta"
+* Operators var noteikt, ka pasūtījuma problēma ir saistīta ar maksājumu.
 
 ### KIN-24	Should	Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus, lai pārvaldītu atlaižu kampaņas.
 aijanilendere-max
 
-#### Atlaižu kodu pārvaldība
-h1. Atlaižu kodu pārvaldība
+TP-29: KIN-24: Atlaižu kodu pārvaldība
 
-Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus.
+#### KIN-24-01: Atlaižu koda izveidošana
 
-h2. Testēšanas mērķis
+h2. Preconditions
+* Sistēmas operators ir autorizējies sistēmā
+* Operatoram ir tiesības pārvaldīt atlaižu kodus
+* Atlaižu kods "TEST10" sistēmā vēl neeksistē
 
-Pārbaudīt, ka sistēma izpilda šo prasību. Testa gadījumi tiek pievienoti šim plānam.
+h2. Steps
+* 1. Atvērt sadaļu "Atlaižu kodu pārvaldība"
+* 2. Nospiest pogu "Izveidot atlaižu kodu"
+* 3. Ievadīt atlaižu kodu "TEST10"
+* 4. Aizpildīt pārējos obligātos laukus ar derīgiem datiem
+* 5. Nospiest pogu "Saglabāt"
+
+h2. Expected
+* Sistēma saglabā jauno atlaižu kodu
+* Sistēma parāda paziņojumu par veiksmīgu atlaižu koda izveidošanu
+* Atlaižu kods "TEST10" tiek parādīts atlaižu kodu sarakstā
+* Saglabātā atlaižu koda informācija atbilst ievadītajiem datiem
+
+
+#### KIN-24-02: Atlaižu koda aktivizēšana
+
+h2. Preconditions
+* Sistēmas operators ir autorizējies sistēmā
+* Operatoram ir tiesības pārvaldīt atlaižu kodus
+* Sistēmā ir izveidots atlaižu kods "TEST10"
+* Atlaižu kods "TEST10" ir neaktīvs
+
+h2. Steps
+* 1. Atvērt sadaļu "Atlaižu kodu pārvaldība"
+* 2. Atrast atlaižu kodu "TEST10"
+* 3. Atvērt atlaižu koda informāciju
+* 4. Nospiest pogu "Aktivizēt"
+
+h2. Expected
+* Sistēma aktivizē atlaižu kodu "TEST10"
+* Atlaižu koda statuss tiek mainīts uz "Aktīvs"
+* Sistēma parāda paziņojumu par veiksmīgu atlaižu koda aktivizēšanu
+* Atlaižu kodu sarakstā tiek parādīts atlaižu koda aktuālais statuss
+
+
+#### KIN-24-03: Atlaižu koda deaktivizēšana
+
+h2. Preconditions
+* Sistēmas operators ir autorizējies sistēmā
+* Operatoram ir tiesības pārvaldīt atlaižu kodus
+* Sistēmā ir izveidots atlaižu kods "TEST10"
+* Atlaižu kods "TEST10" ir aktīvs
+
+h2. Steps
+* 1. Atvērt sadaļu "Atlaižu kodu pārvaldība"
+* 2. Atrast atlaižu kodu "TEST10"
+* 3. Atvērt atlaižu koda informāciju
+* 4. Nospiest pogu "Deaktivizēt"
+
+h2. Expected
+* Sistēma deaktivizē atlaižu kodu "TEST10"
+* Atlaižu koda statuss tiek mainīts uz "Neaktīvs"
+* Sistēma parāda paziņojumu par veiksmīgu atlaižu koda deaktivizēšanu
+* Atlaižu kodu sarakstā tiek parādīts atlaižu koda aktuālais statuss
