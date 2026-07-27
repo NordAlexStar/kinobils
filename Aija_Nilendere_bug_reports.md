@@ -10,6 +10,16 @@ h2. Preconditions
 Comments:
 Tikai vienai filmai ir 1+ seansi, pārējām ir tikai 1 seanss.
 
+RESOLUTION
+Status: Fixed
+Fixed in Version: 0.1.0
+Filmām ir pievienoti 1+ seansi.
+
+FOLLOW-UP
+Filmu skaits izlabots.
+
+CONCLUSION: TC PASSED 0.1.0 27.07.2026 19:01
+
 
 
 
@@ -23,5 +33,14 @@ KIN-15-01: Derīgs atlaides kods
 h2. Preconditions
 * Grozā ir pievienota kino biļete un ir pieejams atlaides koda ievades lauks - FAILED
 
-
 Comments: Nav lauka, kurā norādīt atlaidi.
+
+RESOLUTION
+Status: Fixed
+Fixed in Version: 0.2.0
+Izveidots lauks, kurā var norādīt atlaidi.
+
+FOLLOW-UP
+Izveidots lauks, kurā var norādīt atlaidi.
+
+CONCLUSION: TC PASSED 0.2.0 27.07.2026 19:04
