@@ -1,13 +1,14 @@
 @page "/admin"
 @rendermode InteractiveServer
 @inject CinemaCatalogService Catalog
+@inject IWebHostEnvironment Environment
 
 <PageTitle>Pārvaldība — KINO NOX</PageTitle>
 
 <section class="admin-page">
     <div class="section-head"><div><p class="eyebrow">OPERATORA DARBA VIETA</p><h1>Repertuāra <i>pārvaldība</i></h1></div><span class="status-tag">● Dati saglabāti sesijā</span></div>
     <div class="admin-layout">
-        <div class="admin-form"><h2>Pievienot filmu</h2><p>Izveido kartīti, kas uzreiz būs redzama repertuārā.</p><EditForm Model="NewMovie" OnValidSubmit="SaveMovie"><DataAnnotationsValidator /><div class="field-grid"><label>Nosaukums<InputText @bind-Value="NewMovie.Title" /></label><label>Žanrs<InputText @bind-Value="NewMovie.Genre" /></label></div><label>Apraksts<InputTextArea @bind-Value="NewMovie.Description" /></label><div class="field-grid"><label>Ilgums minūtēs<InputNumber @bind-Value="NewMovie.Duration" /></label><label>Vecuma ierobežojums<InputText @bind-Value="NewMovie.AgeRating" /></label></div><label>Filmas valoda<InputText @bind-Value="NewMovie.Language" /></label><button class="button button-primary" type="submit">Pievienot filmu <span>+</span></button></EditForm></div>
+        <div class="admin-form"><h2>Pievienot filmu</h2><p>Izveido kartīti, kas uzreiz būs redzama repertuārā.</p><EditForm Model="NewMovie" OnValidSubmit="SaveMovie"><DataAnnotationsValidator /><div class="field-grid"><label>Nosaukums<InputText @bind-Value="NewMovie.Title" /></label><label>Žanrs<InputText @bind-Value="NewMovie.Genre" /></label></div><label>Apraksts<InputTextArea @bind-Value="NewMovie.Description" /></label><div class="field-grid"><label>Ilgums minūtēs<InputNumber @bind-Value="NewMovie.Duration" /></label><label>Vecuma ierobežojums<InputText @bind-Value="NewMovie.AgeRating" /></label></div><label>Filmas valoda<InputText @bind-Value="NewMovie.Language" /></label><label>Plakāts<InputFile OnChange="SelectPoster" accept="image/png,image/jpeg,image/webp" /></label>@if (PosterFile is not null) { <p class="muted">Izvēlēts: @PosterFile.Name</p> }<button class="button button-primary" type="submit">Pievienot filmu <span>+</span></button></EditForm></div>
         <div class="admin-form"><h2>Izveidot seansu</h2><p>Piesaisti filmu, zāli un laiku kinoteātra grafikam.</p><EditForm Model="NewScreening" OnValidSubmit="SaveScreening"><DataAnnotationsValidator /><label>Filma<InputSelect @bind-Value="NewScreening.MovieId">@foreach (var movie in Catalog.Movies) { <option value="@movie.Id">@movie.Title</option> }</InputSelect></label><div class="field-grid"><label>Datums un laiks<InputDate @bind-Value="NewScreening.StartsAt" Type="InputDateType.DateTimeLocal" /></label><label>Zāle<InputSelect @bind-Value="NewScreening.Hall">@foreach (var hall in Catalog.Halls) { <option>@hall.Name</option> }</InputSelect></label></div><label>Cena, €<InputNumber @bind-Value="NewScreening.Price" /></label><button class="button button-primary" type="submit">Izveidot seansu <span>+</span></button></EditForm></div>
     </div>
     @if (!string.IsNullOrWhiteSpace(Notice)) { <div class="notice">@Notice</div> }
@@ -21,7 +22,27 @@
     private Dictionary<string, HallEditor> HallEdits { get; } = [];
     private string? Notice { get; set; }
     protected override void OnInitialized() { foreach (var hall in Catalog.Halls) HallEdits[hall.Name] = new HallEditor { Rows = hall.Rows, SeatsPerRow = hall.SeatsPerRow }; }
-    private void SaveMovie() { Catalog.AddMovie(NewMovie.Title, NewMovie.Genre, NewMovie.Duration, NewMovie.Description, NewMovie.AgeRating, NewMovie.Language); Notice = $"Filma “{NewMovie.Title}” pievienota repertuāram."; NewMovie = new(); }
+    private IBrowserFile? PosterFile { get; set; }
+    private void SelectPoster(InputFileChangeEventArgs args) => PosterFile = args.File;
+    private async Task SaveMovie()
+    {
+        var posterPath = "";
+        if (PosterFile is not null)
+        {
+            if (!PosterFile.ContentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase)) { Notice = "Izvēlieties attēla failu."; return; }
+            var extension = Path.GetExtension(PosterFile.Name).ToLowerInvariant();
+            if (extension is not ".png" and not ".jpg" and not ".jpeg" and not ".webp") { Notice = "Atbalstītie formāti: PNG, JPG un WEBP."; return; }
+            var fileName = $"{Guid.NewGuid():N}{extension}";
+            var posterDirectory = Path.Combine(Environment.WebRootPath, "images", "posters");
+            Directory.CreateDirectory(posterDirectory);
+            await using var source = PosterFile.OpenReadStream(2 * 1024 * 1024);
+            await using var target = File.Create(Path.Combine(posterDirectory, fileName));
+            await source.CopyToAsync(target);
+            posterPath = $"/images/posters/{fileName}";
+        }
+        Catalog.AddMovie(NewMovie.Title, NewMovie.Genre, NewMovie.Duration, NewMovie.Description, NewMovie.AgeRating, NewMovie.Language, posterPath);
+        Notice = $"Filma “{NewMovie.Title}” pievienota repertuāram."; NewMovie = new(); PosterFile = null;
+    }
     private void SaveScreening() { Catalog.AddScreening(NewScreening.MovieId, NewScreening.StartsAt, NewScreening.Hall, NewScreening.Price); Notice = "Seanss ir pievienots kinoteātra grafikam."; }
     private void SaveHall(string name) { var edit = HallEdits[name]; Catalog.UpdateHallLayout(name, edit.Rows, edit.SeatsPerRow); Notice = $"{name} sēdvietu plāns ir saglabāts."; }
     private sealed class NewMovieInput { [System.ComponentModel.DataAnnotations.Required] public string Title { get; set; } = ""; [System.ComponentModel.DataAnnotations.Required] public string Genre { get; set; } = ""; [System.ComponentModel.DataAnnotations.Range(1, 360)] public int Duration { get; set; } = 100; [System.ComponentModel.DataAnnotations.Required] public string Description { get; set; } = ""; public string AgeRating { get; set; } = "7+"; public string Language { get; set; } = "Latviešu"; }

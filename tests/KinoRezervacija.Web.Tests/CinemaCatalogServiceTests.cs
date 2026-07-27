@@ -75,6 +75,16 @@ public sealed class CinemaCatalogServiceTests
     }
 
     [Fact]
+    public void SeededCatalogOffersMultipleScreeningsForMoreThanOneMovie()
+    {
+        var catalog = new CinemaCatalogService();
+
+        var moviesWithMultipleScreenings = catalog.Movies.Count(movie => catalog.GetScreenings(movie.Id).Count() > 1);
+
+        Assert.True(moviesWithMultipleScreenings >= 2);
+    }
+
+    [Fact]
     public void AddMovieMakesTheMovieAvailableInTheCatalog()
     {
         var catalog = new CinemaCatalogService();
@@ -84,6 +94,17 @@ public sealed class CinemaCatalogServiceTests
         var movie = Assert.Single(catalog.Movies, item => item.Title == "Ziemeļu gaisma");
         Assert.Equal(101, movie.DurationMinutes);
         Assert.Equal("Drāma", movie.Genre);
+    }
+
+    [Fact]
+    public void AddMovieKeepsTheUploadedPosterPath()
+    {
+        var catalog = new CinemaCatalogService();
+
+        catalog.AddMovie("Attēlu filma", "Drāma", 100, "Apraksts", "7+", "Latviešu", "/images/posters/attelu-filma.png");
+
+        var movie = Assert.Single(catalog.Movies, item => item.Title == "Attēlu filma");
+        Assert.Equal("/images/posters/attelu-filma.png", movie.PosterPath);
     }
 
     [Fact]

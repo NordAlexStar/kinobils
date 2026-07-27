@@ -23,6 +23,11 @@ h2. Expected
 COMMENT:
 Nav iespējams pievienot attēlu
 
+RESOLUTION:
+Status: FIXED
+FIXED IN VERSION: 0.1.7
+Filmas pievienošanas formā pievienota plakāta augšupielāde PNG, JPG un WEBP formātos.
+
 
 TC: KIN-16-01 27.07.2026 19:00
 VERSION: 038c64ec
