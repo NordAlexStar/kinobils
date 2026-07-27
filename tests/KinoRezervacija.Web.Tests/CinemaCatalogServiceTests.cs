@@ -5,6 +5,20 @@ namespace KinoRezervacija.Web.Tests;
 public sealed class CinemaCatalogServiceTests
 {
     [Fact]
+    public void AppVersionUsesSemanticVersionFormat()
+    {
+        Assert.Matches("^\\d+\\.\\d+\\.\\d+$", AppVersion.Value);
+    }
+
+    [Fact]
+    public void CatalogMoviesExposeAReleaseYear()
+    {
+        var catalog = new CinemaCatalogService();
+
+        Assert.All(catalog.Movies, movie => Assert.InRange(movie.ReleaseYear, 1888, DateTime.Today.Year));
+    }
+
+    [Fact]
     public void SeededMoviesHaveAnAvailableScreeningAndAValidHall()
     {
         var catalog = new CinemaCatalogService();

@@ -4,8 +4,11 @@
     <File Path="TestCases.md" />
   </Folder>
   <Folder Name="/Docs/Bugs/">
+    <File Path="Aija_Nilendere_bug_reports.md" />
     <File Path="Aleksejs_Semjonovs_bug_reports.md" />
     <File Path="Oļegs_Zagrajs_bug_reports.md" />
+    <File Path="Sandis_Linards_Duda_bug_reports.md" />
+    <File Path="Sjuzana_Rozenberga_bug_reports.md" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/KinoRezervacija.Web/KinoRezervacija.Web.csproj" />

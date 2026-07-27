@@ -37,7 +37,7 @@
                     }
                     <span>@movie.Genre.ToUpperInvariant()</span><strong>@movie.Title</strong><b>@movie.AgeRating</b>
                 </div>
-                <div class="tile-info"><div><h3>@movie.Title</h3><p>@movie.DurationMinutes min · @movie.Language</p></div><span class="price">no @movie.FromPrice.ToString("0.00") €</span></div>
+                <div class="tile-info"><div><h3>@movie.Title</h3><p>@movie.Genre · @movie.ReleaseYear · @movie.DurationMinutes min · @movie.Language</p></div><span class="price">no @movie.FromPrice.ToString("0.00") €</span></div>
             </article>
         }
     </div>
