@@ -292,29 +292,108 @@ h2. Expected
 * Lietotājs saņem atiestatīšanas linku savā e-pastā
 * Lietotājs var veiksmīgi izveidot jaunu paroli
 
-KIN-23	Must	Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
-=======
-### KIN-23	Must	Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
->>>>>>> 92bc878c85d8507711c9b4a91f202c78309c0ee7
+### KIN-23  Must  Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
 aijanilendere-max
 
-#### Pasūtījumu statusi
+#### KIN-23-01: Veiksmīga pasūtījuma statusu attēlošana
 
-h1. Pasūtījumu statusi
-Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu.
+h2. Preconditions
+* Sistēmas operators ir autorizējies sistēmā
+* Sistēmā ir izveidots pasūtījums
+* Pasūtījuma apmaksa ir veiksmīgi pabeigta
+* Biļete ir nosūtīta pircējam
 
-h2. Testēšanas mērķis
-Pārbaudīt, ka sistēma izpilda šo prasību. Testa gadījumi tiek pievienoti šim plānam.
+h2. Steps
+* 1. Atvērt sadaļu "Pasūtījumi"
+* 2. Atrast nepieciešamo pasūtījumu
+* 3. Atvērt pasūtījuma informāciju
 
+h2. Expected
+* Sistēma parāda izvēlētā pasūtījuma statusu
+* Sistēma parāda maksājuma statusu "Apmaksāts"
+* Sistēma parāda biļetes nosūtīšanas statusu "Nosūtīta"
+* Visi statusi ir skaidri saprotami un attiecas uz izvēlēto pasūtījumu
+
+#### KIN-23-02: Neveiksmīga maksājuma statusa attēlošana
+
+h2. Preconditions
+* Sistēmas operators ir autorizējies sistēmā
+* Sistēmā ir izveidots pasūtījums
+* Pasūtījuma apmaksa nav veiksmīgi pabeigta
+* Biļete pircējam nav nosūtīta
+
+h2. Steps
+* 1. Atvērt sadaļu "Pasūtījumi"
+* 2. Atrast pasūtījumu ar neveiksmīgu maksājumu
+* 3. Atvērt pasūtījuma informāciju
+
+h2. Expected
+* Sistēma parāda izvēlētā pasūtījuma statusu
+* Sistēma parāda maksājuma statusu "Neizdevies" vai citu prasībās noteikto statusu
+* Sistēma parāda biļetes nosūtīšanas statusu "Nav nosūtīta"
+* Operators var noteikt, ka pasūtījuma problēma ir saistīta ar maksājumu.
 
 ### KIN-24	Should	Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus, lai pārvaldītu atlaižu kampaņas.
 aijanilendere-max
 
-#### Atlaižu kodu pārvaldība
-h1. Atlaižu kodu pārvaldība
+#### KIN-24-01: Atlaižu koda izveidošana
 
-Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus.
+h2. Preconditions
+* Sistēmas operators ir autorizējies sistēmā
+* Operatoram ir tiesības pārvaldīt atlaižu kodus
+* Atlaižu kods "TEST10" sistēmā vēl neeksistē
 
-h2. Testēšanas mērķis
+h2. Steps
+* 1. Atvērt sadaļu "Atlaižu kodu pārvaldība"
+* 2. Nospiest pogu "Izveidot atlaižu kodu"
+* 3. Ievadīt atlaižu kodu "TEST10"
+* 4. Aizpildīt pārējos obligātos laukus ar derīgiem datiem
+* 5. Nospiest pogu "Saglabāt"
 
-Pārbaudīt, ka sistēma izpilda šo prasību. Testa gadījumi tiek pievienoti šim plānam.
+h2. Expected
+* Sistēma saglabā jauno atlaižu kodu
+* Sistēma parāda paziņojumu par veiksmīgu atlaižu koda izveidošanu
+* Atlaižu kods "TEST10" tiek parādīts atlaižu kodu sarakstā
+* Saglabātā atlaižu koda informācija atbilst ievadītajiem datiem
+
+
+#### KIN-24-02: Atlaižu koda aktivizēšana
+
+h2. Preconditions
+* Sistēmas operators ir autorizējies sistēmā
+* Operatoram ir tiesības pārvaldīt atlaižu kodus
+* Sistēmā ir izveidots atlaižu kods "TEST10"
+* Atlaižu kods "TEST10" ir neaktīvs
+
+h2. Steps
+* 1. Atvērt sadaļu "Atlaižu kodu pārvaldība"
+* 2. Atrast atlaižu kodu "TEST10"
+* 3. Atvērt atlaižu koda informāciju
+* 4. Nospiest pogu "Aktivizēt"
+
+h2. Expected
+* Sistēma aktivizē atlaižu kodu "TEST10"
+* Atlaižu koda statuss tiek mainīts uz "Aktīvs"
+* Sistēma parāda paziņojumu par veiksmīgu atlaižu koda aktivizēšanu
+* Atlaižu kodu sarakstā tiek parādīts atlaižu koda aktuālais statuss
+
+
+#### KIN-24-03: Atlaižu koda deaktivizēšana
+
+h2. Preconditions
+* Sistēmas operators ir autorizējies sistēmā
+* Operatoram ir tiesības pārvaldīt atlaižu kodus
+* Sistēmā ir izveidots atlaižu kods "TEST10"
+* Atlaižu kods "TEST10" ir aktīvs
+
+h2. Steps
+* 1. Atvērt sadaļu "Atlaižu kodu pārvaldība"
+* 2. Atrast atlaižu kodu "TEST10"
+* 3. Atvērt atlaižu koda informāciju
+* 4. Nospiest pogu "Deaktivizēt"
+
+h2. Expected
+* Sistēma deaktivizē atlaižu kodu "TEST10"
+* Atlaižu koda statuss tiek mainīts uz "Neaktīvs"
+* Sistēma parāda paziņojumu par veiksmīgu atlaižu koda deaktivizēšanu
+* Atlaižu kodu sarakstā tiek parādīts atlaižu koda aktuālais statuss
