@@ -9,6 +9,7 @@ builder.Services.AddRazorComponents()
 builder.Services.AddSingleton<CinemaCatalogService>();
 builder.Services.AddSingleton<BookingService>();
 builder.Services.AddSingleton<DiscountService>();
+builder.Services.AddSingleton<PaymentService>();
 builder.Services.AddScoped<CustomerSession>();
 
 var app = builder.Build();

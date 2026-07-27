@@ -32,6 +32,11 @@ REVIEW OF RESOLUTION:
 Status: FAILED
 BUG: Teksts palien zem attēla situācijā, kad logs nav atvērts pilnībā, un ir samazināts par daļu no ekrāna - https://imgur.com/a/4udOQQi. Lietotājam jāredz pilns teksts pat, ja lieto pārlūku šādā ne pilnā ekrānā.
 
+RESOLUTION:
+Status: FIXED
+FIXED IN VERSION: 0.1.6
+Filmas detaļu skats pielāgots dažādiem loga platumiem: šaurā logā plakāts atrodas teksta plūsmā un vairs neaizsedz aprakstu.
+
 
 TC: KIN-03 Kā pircējs es vēlos filtrēt filmas pēc žanra un rādīt tikai filmas ar šodienas seansiem, lai ātrāk atrastu piemērotu filmu.
 Date: 27.07.2026 19:04

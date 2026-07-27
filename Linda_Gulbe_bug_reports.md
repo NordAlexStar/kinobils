@@ -42,3 +42,8 @@ h2. Expected
 * Pircējs saņem paziņojumu par veiksmīgu maksājumu
 
 COMMENT: Nav iespējams izvēlēties maksājuma veidu
+
+RESOLUTION:
+Status: FIXED
+FIXED IN VERSION: 0.1.5
+Pasūtījuma noformēšanā pievienota kartes maksājuma un internetbankas izvēle, kā arī maksājuma datu pārbaude.
