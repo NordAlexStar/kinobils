@@ -12,12 +12,21 @@ public sealed class CinemaCatalogService
     private readonly List<Screening> _screenings = [
         new(1, 1, TodayAt(18, 30), "Zāle 1", 8.50m, 42), new(2, 1, TodayAt(21, 15), "Zāle 2", 9.50m, 17),
         new(3, 2, TodayAt(19, 10), "Zāle 3", 9.00m, 31), new(4, 3, TodayAt(17, 45), "Zāle 2", 7.50m, 56), new(5, 4, TodayAt(16, 20), "Zāle 1", 7.50m, 65)];
-    public IReadOnlyList<Hall> Halls { get; } = [new("Zāle 1", 6, 10), new("Zāle 2", 5, 8), new("Zāle 3", 7, 12)];
+    private readonly List<Hall> _halls = [new("Zāle 1", 6, 10), new("Zāle 2", 5, 8), new("Zāle 3", 7, 12)];
+    public IReadOnlyList<Hall> Halls => _halls;
     public IReadOnlyList<Movie> Movies => _movies;
     public IReadOnlyList<Screening> Screenings => _screenings;
     public Movie? FindMovie(int id) => _movies.SingleOrDefault(movie => movie.Id == id);
     public IEnumerable<Screening> GetScreenings(int movieId) => _screenings.Where(screening => screening.MovieId == movieId).OrderBy(screening => screening.StartsAt);
     public void AddMovie(string title, string genre, int duration, string description, string ageRating, string language) => _movies.Add(new(_movies.Max(movie => movie.Id) + 1, title, genre, DateTime.Today.Year, duration, ageRating, language, "Latviešu", description, 8.00m, "coral"));
     public void AddScreening(int movieId, DateTime startsAt, string hall, decimal price) => _screenings.Add(new(_screenings.Max(screening => screening.Id) + 1, movieId, startsAt, hall, price, 48));
+    public bool UpdateHallLayout(string name, int rows, int seatsPerRow)
+    {
+        var index = _halls.FindIndex(hall => hall.Name == name);
+        if (index < 0) return false;
+
+        _halls[index] = new Hall(name, rows, seatsPerRow);
+        return true;
+    }
     private static DateTime TodayAt(int hour, int minute) => DateTime.Today.AddHours(hour).AddMinutes(minute);
 }

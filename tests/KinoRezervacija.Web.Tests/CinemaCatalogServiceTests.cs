@@ -19,6 +19,18 @@ public sealed class CinemaCatalogServiceTests
     }
 
     [Fact]
+    public void HallLayoutCanBeUpdatedForOperatorManagement()
+    {
+        var catalog = new CinemaCatalogService();
+
+        Assert.True(catalog.UpdateHallLayout("Zāle 1", 8, 12));
+        var hall = Assert.Single(catalog.Halls, item => item.Name == "Zāle 1");
+
+        Assert.Equal(8, hall.Rows);
+        Assert.Equal(12, hall.SeatsPerRow);
+    }
+
+    [Fact]
     public void SeededMoviesHaveAnAvailableScreeningAndAValidHall()
     {
         var catalog = new CinemaCatalogService();
