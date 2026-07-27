@@ -22,3 +22,13 @@ h2. Preconditions
 * Grozā ir pievienota kino biļete un ir pieejams atlaides koda ievades lauks - FAILED
 
 Comments: Nav lauka, kurā norādīt atlaidi.
+
+RESOLUTION:
+Status: FIXED
+FIXED IN VERSION: 0.1.4
+Pasūtījuma noformēšanā pievienots atlaides koda lauks. Derīgs kods `blegh` piemēro 10% atlaidi, nederīgs kods parāda saprotamu paziņojumu.
+
+FOLLOW-UP:
+Versijas attēlojums izlabots; tas ir redzams lietotnes galvenē versijā 0.1.4
+
+CONCLUSION: TC PASSED 0.1.4 27.07.2026 19.44

@@ -19,6 +19,49 @@ public sealed class CinemaCatalogServiceTests
     }
 
     [Fact]
+    public void HallLayoutCanBeUpdatedForOperatorManagement()
+    {
+        var catalog = new CinemaCatalogService();
+
+        Assert.True(catalog.UpdateHallLayout("Zāle 1", 8, 12));
+        var hall = Assert.Single(catalog.Halls, item => item.Name == "Zāle 1");
+
+        Assert.Equal(8, hall.Rows);
+        Assert.Equal(12, hall.SeatsPerRow);
+    }
+
+    [Fact]
+    public void ValidDiscountCodeReducesTheOrderTotal()
+    {
+        var discounts = new DiscountService();
+
+        Assert.True(discounts.TryApply("blegh", 20.00m, out var total, out var message));
+        Assert.Equal(18.00m, total);
+        Assert.Contains("10%", message);
+    }
+
+    [Fact]
+    public void InvalidDiscountCodeLeavesTheOrderTotalUnchanged()
+    {
+        var discounts = new DiscountService();
+
+        Assert.False(discounts.TryApply("bleg", 20.00m, out var total, out var message));
+        Assert.Equal(20.00m, total);
+        Assert.Contains("Nederīgs", message);
+    }
+
+    [Fact]
+    public void PaymentValidationSupportsCardAndInternetBanking()
+    {
+        var payments = new PaymentService();
+
+        Assert.True(payments.TryValidate("Kartes maksājums", "4242 4242 4242 4242", "12/30", "123", out _));
+        Assert.True(payments.TryValidate("Internetbanka", "", "", "", out _));
+        Assert.False(payments.TryValidate("Kartes maksājums", "123", "", "", out var message));
+        Assert.Contains("derīgu", message);
+    }
+
+    [Fact]
     public void SeededMoviesHaveAnAvailableScreeningAndAValidHall()
     {
         var catalog = new CinemaCatalogService();

@@ -2,9 +2,99 @@
 @rendermode InteractiveServer
 @inject CinemaCatalogService Catalog
 @inject BookingService Booking
+@inject DiscountService Discounts
+@inject PaymentService Payments
 @inject CustomerSession Session
 @inject NavigationManager Navigation
 
 <PageTitle>Pasūtījums — KINO NOX</PageTitle>
-@if (Screening is null || Movie is null) { <p class="empty-state">Pasūtījums nav atrasts.</p> } else { <section class="checkout-page"><a class="back-link" href="hall/@ScreeningId">← Mainīt vietas</a><div class="checkout-grid"><div class="checkout-main"><p class="eyebrow">PASŪTĪJUMA APSTIPRINĀŠANA</p><h1>@Movie.Title</h1><p class="muted">@Screening.StartsAt.ToString("dddd, dd. MMMM · HH:mm") · @Screening.Hall</p><div class="ticket-line"><span>Vietas</span><b>@string.Join(", ", SelectedSeats)</b></div><div class="ticket-line"><span>Biļetes</span><b>@SelectedSeats.Count × @Screening.Price.ToString("0.00") €</b></div><div class="ticket-line total"><span>Kopā</span><b>@(Screening.Price * SelectedSeats.Count).ToString("0.00") €</b></div><div class="checkout-email">@if (Session.IsAuthenticated) { <p>Biļeti nosūtīsim uz <b>@Session.Email</b>.</p> } else { <p>Turpināt kā viesim</p><EditForm Model="Guest" OnValidSubmit="Pay"><DataAnnotationsValidator /><label>E-pasts biļetes saņemšanai<InputText @bind-Value="Guest.Email" type="email" /></label><ValidationMessage For="() => Guest.Email" /><button class="button button-primary" type="submit">Apmaksāt un saņemt biļeti <span>→</span></button></EditForm> } @if (Session.IsAuthenticated) { <button class="button button-primary" @onclick="Pay">Apmaksāt un saņemt biļeti <span>→</span></button> } @if (Message is not null) { <p class="form-message">@Message</p> }</div></div><aside class="checkout-poster"><img src="@Movie.PosterPath" alt="@Movie.Title" /></aside></div></section> }
-@code { [Parameter] public int ScreeningId { get; set; } [SupplyParameterFromQuery] public string? Seats { get; set; } private Screening? Screening => Catalog.Screenings.SingleOrDefault(item => item.Id == ScreeningId); private Movie? Movie => Screening is null ? null : Catalog.FindMovie(Screening.MovieId); private IReadOnlyList<string> SelectedSeats => (Seats ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries); private GuestInput Guest { get; set; } = new(); private string? Message { get; set; } private void Pay() { var email = Session.Email ?? Guest.Email; var order = Booking.Reserve(ScreeningId, SelectedSeats, email, out var message); if (order is null) { Message = message; return; } Navigation.NavigateTo($"ticket/{order.Id}"); } private sealed class GuestInput { [Required, EmailAddress] public string Email { get; set; } = ""; } }
+
+@if (Screening is null || Movie is null)
+{
+    <p class="empty-state">Pasūtījums nav atrasts.</p>
+}
+else
+{
+    <section class="checkout-page">
+        <a class="back-link" href="hall/@ScreeningId">← Mainīt vietas</a>
+        <div class="checkout-grid">
+            <div class="checkout-main">
+                <p class="eyebrow">PASŪTĪJUMA APSTIPRINĀŠANA</p>
+                <h1>@Movie.Title</h1>
+                <p class="muted">@Screening.StartsAt.ToString("dddd, dd. MMMM · HH:mm") · @Screening.Hall</p>
+                <div class="ticket-line"><span>Vietas</span><b>@string.Join(", ", SelectedSeats)</b></div>
+                <div class="ticket-line"><span>Biļetes</span><b>@SelectedSeats.Count × @Screening.Price.ToString("0.00") €</b></div>
+                <div class="ticket-line"><span>Starpsumma</span><b>@Subtotal.ToString("0.00") €</b></div>
+                @if (DiscountApplied) { <div class="ticket-line discount-line"><span>Atlaide</span><b>-@DiscountAmount.ToString("0.00") €</b></div> }
+                <div class="ticket-line total"><span>Kopā</span><b>@Total.ToString("0.00") €</b></div>
+
+                <div class="discount-form">
+                    <p class="muted">Vai jums ir atlaides kods?</p>
+                    <EditForm Model="Discount" OnValidSubmit="ApplyDiscount">
+                        <div class="discount-input"><InputText @bind-Value="Discount.Code" placeholder="Atlaides kods" aria-label="Atlaides kods" /><button class="button" type="submit">Piemērot</button></div>
+                    </EditForm>
+                    @if (DiscountMessage is not null) { <p class="form-message">@DiscountMessage</p> }
+                </div>
+
+                <div class="payment-form">
+                    <label>Maksājuma veids
+                        <InputSelect @bind-Value="Payment.Method">
+                            <option value="Kartes maksājums">Kartes maksājums</option>
+                            <option value="Internetbanka">Internetbanka</option>
+                        </InputSelect>
+                    </label>
+                    @if (Payment.Method == "Kartes maksājums")
+                    {
+                        <div class="field-grid"><label>Kartes numurs<InputText @bind-Value="Payment.CardNumber" inputmode="numeric" /></label><label>Derīgs līdz<InputText @bind-Value="Payment.Expiry" placeholder="MM/GG" /></label></div>
+                        <label>CVV<InputText @bind-Value="Payment.Cvv" type="password" inputmode="numeric" /></label>
+                    }
+                </div>
+
+                <div class="checkout-email">
+                    @if (Session.IsAuthenticated)
+                    {
+                        <p>Biļeti nosūtīsim uz <b>@Session.Email</b>.</p>
+                    }
+                    else
+                    {
+                        <p>Turpināt kā viesim</p>
+                        <EditForm Model="Guest" OnValidSubmit="Pay"><DataAnnotationsValidator /><label>E-pasts biļetes saņemšanai<InputText @bind-Value="Guest.Email" type="email" /></label><ValidationMessage For="() => Guest.Email" /><button class="button button-primary" type="submit">Apmaksāt un saņemt biļeti <span>→</span></button></EditForm>
+                    }
+                    @if (Session.IsAuthenticated) { <button class="button button-primary" @onclick="Pay">Apmaksāt un saņemt biļeti <span>→</span></button> }
+                    @if (Message is not null) { <p class="form-message">@Message</p> }
+                </div>
+            </div>
+            <aside class="checkout-poster"><img src="@Movie.PosterPath" alt="@Movie.Title" /></aside>
+        </div>
+    </section>
+}
+
+@code {
+    [Parameter] public int ScreeningId { get; set; }
+    [SupplyParameterFromQuery] public string? Seats { get; set; }
+    private Screening? Screening => Catalog.Screenings.SingleOrDefault(item => item.Id == ScreeningId);
+    private Movie? Movie => Screening is null ? null : Catalog.FindMovie(Screening.MovieId);
+    private IReadOnlyList<string> SelectedSeats => (Seats ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+    private decimal Subtotal => Screening is null ? 0 : Screening.Price * SelectedSeats.Count;
+    private decimal Total => DiscountApplied ? DiscountedTotal : Subtotal;
+    private decimal DiscountAmount => Subtotal - DiscountedTotal;
+    private decimal DiscountedTotal { get; set; }
+    private bool DiscountApplied { get; set; }
+    private DiscountInput Discount { get; set; } = new();
+    private PaymentInput Payment { get; set; } = new();
+    private GuestInput Guest { get; set; } = new();
+    private string? DiscountMessage { get; set; }
+    private string? Message { get; set; }
+    private void ApplyDiscount() { DiscountApplied = Discounts.TryApply(Discount.Code, Subtotal, out var total, out var message); DiscountedTotal = total; DiscountMessage = message; }
+    private void Pay()
+    {
+        if (!Payments.TryValidate(Payment.Method, Payment.CardNumber, Payment.Expiry, Payment.Cvv, out var paymentMessage)) { Message = paymentMessage; return; }
+        var email = Session.Email ?? Guest.Email;
+        var order = Booking.Reserve(ScreeningId, SelectedSeats, email, out var message);
+        if (order is null) { Message = message; return; }
+        Navigation.NavigateTo($"ticket/{order.Id}");
+    }
+    private sealed class DiscountInput { public string Code { get; set; } = ""; }
+    private sealed class PaymentInput { public string Method { get; set; } = "Kartes maksājums"; public string CardNumber { get; set; } = ""; public string Expiry { get; set; } = ""; public string Cvv { get; set; } = ""; }
+    private sealed class GuestInput { [Required, EmailAddress] public string Email { get; set; } = ""; }
+}
