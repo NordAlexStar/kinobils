@@ -30,6 +30,30 @@ Izvēlētas vietas ir rezervētas
 
 COMMENTS:
 Izvēlētas vietas ir brīvas
+TESTĒTĀJA KOMENTĀRS PAR KIN-04:
+Šis tests pašlaik ir bloķēts, jo demonstrācijas datos nav filmu treileru vai lietotāju vērtējumu. Lai testu varētu veikt pilnvērtīgi, vismaz vienai filmai jābūt pieejamai testa treilera saitei un vērtējumam, piemēram, 4,5/5.
+
+Pēc testa datu sagatavošanas:
+1. Atveriet filmas detalizēto lapu.
+2. Pārbaudiet, ka treilera saite vai atskaņotājs ir redzams, ja filmai ir treileris.
+3. Pārbaudiet, ka lietotāju vērtējums ir redzams, ja filmai ir vērtējums.
+4. Pārbaudiet arī filmu bez treilera vai vērtējuma — šajā gadījumā saskarnei nevajadzētu rādīt tukšu vai kļūdainu bloku.
+
+Ja treilera un vērtējuma funkcionalitāte nav iekļauta šīs versijas tvērumā, lūdzu, atstājiet KIN-04 statusu “Blocked”, nevis “Failed”, un norādiet, ka testam trūkst priekšnosacījumu.
+
+TC: KIN-05-01
+VERSION: 93b9e0fe
+Status:
+BUG:
+
+TESTĒTĀJA KOMENTĀRS:
+Lūdzu, pabeidziet testu, izmantojot filmu, kurai ir vismaz divi seansi. Pašreizējā demonstrācijas versijā šādas filmas ir “Neona pilsēta” un “Mēness arhīvs”.
+
+1. Atveriet vienas no šīm filmām detalizēto lapu.
+2. Pārbaudiet, ka seansu sarakstā redzami abi seansi ar datumu, sākuma laiku, zāli un cenu.
+3. Izvēlieties katru seansu pēc kārtas un pārbaudiet, ka sistēma aizved uz attiecīgā seansa sēdvietu plānu.
+4. Ja kāds seanss nav redzams vai tajā redzami nepareizi dati, norādiet filmas nosaukumu, seansa laiku, sagaidāmo rezultātu un faktisko rezultātu.
+
 
 
 TC: KIN-01-01 27.07.2026 17:51
