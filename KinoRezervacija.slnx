@@ -4,6 +4,7 @@
     <File Path="TestCases.md" />
   </Folder>
   <Folder Name="/Docs/Bugs/">
+    <File Path="Aija_Nilendere_bug_reports.md" />
     <File Path="Aleksejs_Semjonovs_bug_reports.md" />
   </Folder>
   <Folder Name="/src/">
