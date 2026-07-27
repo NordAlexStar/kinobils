@@ -48,6 +48,9 @@ Status: FIXED
 FIXED IN VERSION: 0.1.9
 Filmas detaļu lapai pievienots atsevišķs adaptīvais izkārtojums ar garantētu teksta un plakāta atdalīšanu. Šaurā logā plakāts atrodas zem apraksta.
 
+FOLLOW-UP: FIX APPROVED
+Teksts attēlots pareizi gan pilnekrāna, gan samazinātajā ekrānā.
+
 TC: KIN-03 Kā pircējs es vēlos filtrēt filmas pēc žanra un rādīt tikai filmas ar šodienas seansiem, lai ātrāk atrastu piemērotu filmu.
 Date: 27.07.2026 19:04
 Status: SUCCEED
