@@ -1,0 +1,48 @@
+.movie-hero {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 34%) !important;
+    column-gap: clamp(24px, 6vw, 90px) !important;
+    align-items: end !important;
+}
+
+.movie-hero-info {
+    grid-column: 1 !important;
+    max-width: none !important;
+    min-width: 0 !important;
+}
+
+.movie-hero-info h1,
+.movie-hero-info > p:last-child {
+    max-width: 100% !important;
+    overflow-wrap: anywhere;
+}
+
+.movie-hero-poster {
+    position: relative !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    max-height: 380px !important;
+    height: auto !important;
+    align-self: end !important;
+}
+
+@media (max-width: 800px) {
+    .movie-hero {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 24px !important;
+        padding-top: 85px !important;
+    }
+
+    .movie-hero-poster {
+        width: min(100%, 280px) !important;
+        max-height: 280px !important;
+        align-self: flex-end !important;
+        mask-image: none !important;
+    }
+}
