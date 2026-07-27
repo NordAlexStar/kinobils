@@ -25,7 +25,7 @@ Nav iespējams pievienot attēlu
 
 
 TC: KIN-16-01 27.07.2026 19:00
-VERSION: 84f8257b
+VERSION: 038c64ec
 Status: FAILED
 
 h2. Preconditions
