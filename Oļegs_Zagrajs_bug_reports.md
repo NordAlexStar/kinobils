@@ -59,11 +59,9 @@ Lūdzu, pabeidziet testu, izmantojot filmu, kurai ir vismaz divi seansi. Pašrei
 4. Ja kāds seanss nav redzams vai tajā redzami nepareizi dati, norādiet filmas nosaukumu, seansa laiku, sagaidāmo rezultātu un faktisko rezultātu.
 
 
-
-
-
-
-TC: KIN-14 27.07.2026 20:37
+TC: KIN-14 27.07.2026 21:05
+VERSION: 2a849de4
+Status: PASSED
 
 
 
