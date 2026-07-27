@@ -7,11 +7,29 @@ VERSION: 93b9e0fe
 Status: Blocked
 BUG: Filmas treileri un lietotāju vērtējumi šajā sistēmas versijā nav pieejami
 
-TC: KIN-05-01
-VERSION: 93b9e0fe
-Status:
-BUG:
+TC: KIN-11 27.07.2026 20:00
+VERSION: c1b97195
+Status: PASSED
 
+TC: KIN-12 27.07.2026 20:06
+VERSION: c1b97195
+Status: FAILED
+Bug: Maksājuma laikā rezervētas vietas var izvēlēties citi lietotāji
+h2. Preconditions
+*Izvēlēties filmas seansu/ vietas un pievienot biļetes grozā - ok
+
+h2. Steps
+* 1. Izvēlēties filmu un seansu - ok
+* 2. Izvēlēties vrīvas vietas - ok
+* 3. Pāriet uz maksājuma procesu - ok
+* 4. Atvērt sistēmu otrajā pārlūka logā kā cits lietotājs - failed
+* 5. Izvēlēties to [ašu filmu un seansu
+
+h2. Expected
+Izvēlētas vietas ir rezervētas
+
+COMMENTS:
+Izvēlētas vietas ir brīvas
 
 
 TC: KIN-01-01 27.07.2026 17:51
