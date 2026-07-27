@@ -24,7 +24,7 @@ h2. Expected
 COMMENTS: Nav redzams pilnā garumā īsais filmas apraksts, filmas attēls pārklājas virs teksta.
 
 RESOLUTION:
-Status: FIXED
+Status: FIXEDfg
 FIXED IN VERSION: 0.1.2
 Filmas informācijas teksta laukums pielāgots, lai plakāts neaizsegtu aprakstu.
 
