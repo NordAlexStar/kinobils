@@ -43,6 +43,11 @@ BUG: Pēc labojumiem filmas apraksta attēlošana nestrādā pareizi joprojām -
 1) Pilns ekrāns: https://imgur.com/a/GEuNLwT
 2) Samazināts: https://imgur.com/3ZiN6By
 
+RESOLUTION:
+Status: FIXED
+FIXED IN VERSION: 0.1.9
+Filmas detaļu lapai pievienots atsevišķs adaptīvais izkārtojums ar garantētu teksta un plakāta atdalīšanu. Šaurā logā plakāts atrodas zem apraksta.
+
 TC: KIN-03 Kā pircējs es vēlos filtrēt filmas pēc žanra un rādīt tikai filmas ar šodienas seansiem, lai ātrāk atrastu piemērotu filmu.
 Date: 27.07.2026 19:04
 Status: SUCCEED
