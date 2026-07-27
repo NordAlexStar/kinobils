@@ -72,7 +72,7 @@ Preconditions:
 Steps:
 1. Izvēlēties vietas filmas seansam. - OK
 2. Turpināt uz maksājuma lapu. - OK
-3. Pārliecināties, ka ir redzama rezervācijas laika atskaite.
+3. Pārliecināties, ka ir redzama rezervācijas laika atskaite. - FAILED
 
 Expected:
 Maksājuma lapā ir redzams vietu rezervācijas atskaites laiks.
