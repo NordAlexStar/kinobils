@@ -5,6 +5,63 @@ namespace KinoRezervacija.Web.Tests;
 public sealed class CinemaCatalogServiceTests
 {
     [Fact]
+    public void AppVersionUsesSemanticVersionFormat()
+    {
+        Assert.Matches("^\\d+\\.\\d+\\.\\d+$", AppVersion.Value);
+    }
+
+    [Fact]
+    public void CatalogMoviesExposeAReleaseYear()
+    {
+        var catalog = new CinemaCatalogService();
+
+        Assert.All(catalog.Movies, movie => Assert.InRange(movie.ReleaseYear, 1888, DateTime.Today.Year));
+    }
+
+    [Fact]
+    public void HallLayoutCanBeUpdatedForOperatorManagement()
+    {
+        var catalog = new CinemaCatalogService();
+
+        Assert.True(catalog.UpdateHallLayout("Zāle 1", 8, 12));
+        var hall = Assert.Single(catalog.Halls, item => item.Name == "Zāle 1");
+
+        Assert.Equal(8, hall.Rows);
+        Assert.Equal(12, hall.SeatsPerRow);
+    }
+
+    [Fact]
+    public void ValidDiscountCodeReducesTheOrderTotal()
+    {
+        var discounts = new DiscountService();
+
+        Assert.True(discounts.TryApply("blegh", 20.00m, out var total, out var message));
+        Assert.Equal(18.00m, total);
+        Assert.Contains("10%", message);
+    }
+
+    [Fact]
+    public void InvalidDiscountCodeLeavesTheOrderTotalUnchanged()
+    {
+        var discounts = new DiscountService();
+
+        Assert.False(discounts.TryApply("bleg", 20.00m, out var total, out var message));
+        Assert.Equal(20.00m, total);
+        Assert.Contains("Nederīgs", message);
+    }
+
+    [Fact]
+    public void PaymentValidationSupportsCardAndInternetBanking()
+    {
+        var payments = new PaymentService();
+
+        Assert.True(payments.TryValidate("Kartes maksājums", "4242 4242 4242 4242", "12/30", "123", out _));
+        Assert.True(payments.TryValidate("Internetbanka", "", "", "", out _));
+        Assert.False(payments.TryValidate("Kartes maksājums", "123", "", "", out var message));
+        Assert.Contains("derīgu", message);
+    }
+
+    [Fact]
     public void SeededMoviesHaveAnAvailableScreeningAndAValidHall()
     {
         var catalog = new CinemaCatalogService();
@@ -18,6 +75,16 @@ public sealed class CinemaCatalogServiceTests
     }
 
     [Fact]
+    public void SeededCatalogOffersMultipleScreeningsForMoreThanOneMovie()
+    {
+        var catalog = new CinemaCatalogService();
+
+        var moviesWithMultipleScreenings = catalog.Movies.Count(movie => catalog.GetScreenings(movie.Id).Count() > 1);
+
+        Assert.True(moviesWithMultipleScreenings >= 2);
+    }
+
+    [Fact]
     public void AddMovieMakesTheMovieAvailableInTheCatalog()
     {
         var catalog = new CinemaCatalogService();
@@ -27,6 +94,17 @@ public sealed class CinemaCatalogServiceTests
         var movie = Assert.Single(catalog.Movies, item => item.Title == "Ziemeļu gaisma");
         Assert.Equal(101, movie.DurationMinutes);
         Assert.Equal("Drāma", movie.Genre);
+    }
+
+    [Fact]
+    public void AddMovieKeepsTheUploadedPosterPath()
+    {
+        var catalog = new CinemaCatalogService();
+
+        catalog.AddMovie("Attēlu filma", "Drāma", 100, "Apraksts", "7+", "Latviešu", "/images/posters/attelu-filma.png");
+
+        var movie = Assert.Single(catalog.Movies, item => item.Title == "Attēlu filma");
+        Assert.Equal("/images/posters/attelu-filma.png", movie.PosterPath);
     }
 
     [Fact]

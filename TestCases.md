@@ -2,14 +2,14 @@ KIN-01	Must	Kā pircējs es vēlos redzēt pieejamo filmu sarakstu alfabētiskā
 
 TC-26: TC-FILM-01: Saraksts tiek ieladets
 h2. Preconditions
-* Datu baze satur 5+ filmas
+* Datu baze satur 4+ filmas
 
 h2. Steps
 * 1. Atver filmu saraksta lapu
 * 2. Nogaida ielades indikatoru
 
 h2. Expected
-* Tiek paradits 5+ filmu saraksts
+* Tiek paradits 4+ filmu saraksts
 * Katrai filmai redzams nosaukums, zanrs, gads
 
 KIN-02	Must	Kā pircējs es vēlos apskatīt filmas detalizētu informāciju — nosaukumu, īsu aprakstu, žanru, ilgumu minūtēs, vecuma ierobežojumu, valodu un subtitru valodu — lai varētu pieņemt lēmumu par filmas izvēli.
@@ -99,11 +99,69 @@ BaibaGaile
 KIN-14	Must	Kā pircējs es vēlos izvēlēties biļetes veidu un redzēt pareizi aprēķinātu kopējo cenu, lai pirms maksājuma saprastu pasūtījuma summu.
 BaibaGaile
 
-KIN-15	Should	Kā pircējs es vēlos ievadīt atlaižu kodu un saņemt saprotamu paziņojumu, ja kods nav derīgs, lai varētu izmantot man pieejamās atlaides.
+### KIN-15	Should	Kā pircējs es vēlos ievadīt atlaižu kodu un saņemt saprotamu paziņojumu, ja kods nav derīgs, lai varētu izmantot man pieejamās atlaides.
 pokyxrose
 
-KIN-16	Must	Kā pircējs es vēlos samaksāt ar atbalstītu maksājuma veidu un atkārtot maksājumu, ja pirmais mēģinājums nav izdevies, lai pabeigtu biļešu iegādi.
+#### KIN-15-01: Derīgs atlaides kods
+h2. Preconditions
+* Grozā ir pievienota kino biļete un ir pieejams atlaides koda ievades lauks
+
+h2. Steps
+* 1. Ievadīt atlaides kodu "blegh"
+* 2. Nospiest pogu "piemērot"
+
+h2. Expected
+* Sistēma pieņem ievadīto atlaides kodu
+* Atlaide tiek piemērota pasūtījumam
+* Rēķina summa tiek samazināta atbilstoši atlaides koda nosacījumiem
+* Sistēma parāda ziņojumu par piemēroto atlaidi
+
+#### KIN-15-02: Nederīgs atlaides kods
+h2. Preconditions
+* Grozā ir pievienota kino biļete un ir pieejams atlaides koda ievades lauks
+
+h2. Steps
+* 1. Ievadīt atlaides kodu "bleg"
+* 2. Nospiest pogu "piemērot"
+
+h2. Expected
+* Sistēma nepieņem ievadīto atlaides kodu
+* Atlaide netiek piemērota
+* Sistēma parāda ziņojumu kā nederīgs atlaides kods
+* Pircējs var turpināt pasūtījuma noformēšanu
+
+### KIN-16	Must	Kā pircējs es vēlos samaksāt ar atbalstītu maksājuma veidu un atkārtot maksājumu, ja pirmais mēģinājums nav izdevies, lai pabeigtu biļešu iegādi.
 pokyxrose
+
+#### KIN-16-01: Veiksmīga maksājuma pārbaude
+h2. Preconditions
+Grozā ir pievienota kino biļete un pircējam ir pieejams atbalstīts maksājuma veids
+
+h2. Steps
+* 1. Izvēlēties maksājuma veidu
+* 2. Ievadīt nepieciešamos maksājuma datus
+* 3. Nospiest pogu "Maksāt"
+
+h2. Expected
+* Sistēma veiksmīgi apstrādā maksājumu
+* Pasūtījums tiek apstiprināts
+* Pircējs saņem paziņojumu par veiksmīgu maksājumu
+
+#### KIN-16-02: Neveiksmīga maksājuma pārbaude
+h2. Preconditions
+Grozā ir pievienota kino biļete un pircējam ir pieejams atbalstīts maksājuma veids
+
+h2. Steps
+* 1. Izvēlēties maksājuma veidu
+* 2. Veikt maksājumu ar nederīgiem maksājuma datiem
+* 3. Pārbaudīt sistēmas parādīto kļūdas ziņojumu
+* 4. Atkārtoti mēģināt veikt maksājumu ar pareiziem datiem
+	
+h2. Expected
+* Sistēma parāda ziņojumu par neveiksmīgu maksājumu
+* Pasūtījums netiek noformēts līdz veiksmīgai apmaksai
+* Pircējam ir iespēja atkārtoti mēģināt veikt maksājumu
+* Pircējs saņem paziņojumu par veiksmīgu maksājumu
 
 KIN-17	Must	Kā pircējs es vēlos saņemt apmaksātas biļetes e-pastā ar unikālu QR kodu, lai varētu tās uzrādīt pie ieejas kinoteātrī.
 anasteisa124
@@ -117,14 +175,67 @@ alipal123
 KIN-20	Must	Kā pircējs es vēlos iegādāties biļeti bez reģistrācijas, lai varētu palikt anonīms, vienlaikus saņemot biļeti e-pastā.
 alipal123
 
-KIN-21	Must	Kā reģistrēts pircējs es vēlos autorizēties ar e-pastu un paroli, kā arī atiestatīt aizmirstu paroli, lai varētu droši piekļūt savam profilam.
+### KIN-21	Must	Kā reģistrēts pircējs es vēlos autorizēties ar e-pastu un paroli, kā arī atiestatīt aizmirstu paroli, lai varētu droši piekļūt savam profilam.
 Linda7315
 
-KIN-22	Must	Kā sistēmas operators es vēlos pēc trim neveiksmīgiem paroles mēģinājumiem uz laiku bloķēt kontu un piedāvāt paroles atiestatīšanu, lai samazinātu konta uzlaušanas risku.
+TC-21: TC-AUTH-01: Pircēja autorizācija
+h1. Preconditions
+* Sistēmā ir reģistrēts lietotājs ar esošu e-pasta adresi un paroli 
+
+h1. Steps
+* Lietotājs atver autorizācijas lapu
+* Lietotājs ievada e-pasta adresi
+* Lietotājs ievada paroli
+* Lietotājs nospiež pogu "Autorizēties"
+
+h2. Expected
+* Lietotājs tiek veiksmīgi autorizēts sistēmā
+* Lietotājs tiek novirzīts uz savu profilu
+
+TC-21: TC-AUTH-02: Pircēja iespēja attiestatīt aizmirstu paroli
+
+h1. Preconditions
+* Sistēmā ir reģistrēts lietotājs ar esošu e-pasta adresi un paroli
+* Lietotājs nav autorizējies
+
+h1. Steps
+* Lietotājs atver autorizācijas lapu
+* Lietotājs nospiež pogu "Aizmirsu paroli"
+* Lietotājs ievada savu e-pasta adresi
+* Lietotājs nospiež pogu "Atiestatīt paroli"
+* Lietotājs saņem paroles atiestatīšanas linku e-pastā
+* Lietotājs atver saņemto saiti
+* Lietotājs ievada jaunu paroli
+* Lietotājs apstiprina jauno paroli
+
+h2. Expected
+* Jaunā parole tiek veiksmīgi saglabāta
+* Lietotājs var autorizēties ar jauno paroli
+
+
+### KIN-22	Must	Kā sistēmas operators es vēlos pēc trim neveiksmīgiem paroles mēģinājumiem uz laiku bloķēt kontu un piedāvāt paroles atiestatīšanu, lai samazinātu konta uzlaušanas risku.
 Linda7315
 
-KIN-23	Must	Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
+### KIN-23	Must	Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
 aijanilendere-max
 
-KIN-24	Should	Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus, lai pārvaldītu atlaižu kampaņas.
+#### Pasūtījumu statusi
+
+h1. Pasūtījumu statusi
+Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu.
+
+h2. Testēšanas mērķis
+Pārbaudīt, ka sistēma izpilda šo prasību. Testa gadījumi tiek pievienoti šim plānam.
+
+
+### KIN-24	Should	Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus, lai pārvaldītu atlaižu kampaņas.
 aijanilendere-max
+
+#### Atlaižu kodu pārvaldība
+h1. Atlaižu kodu pārvaldība
+
+Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus.
+
+h2. Testēšanas mērķis
+
+Pārbaudīt, ka sistēma izpilda šo prasību. Testa gadījumi tiek pievienoti šim plānam.
