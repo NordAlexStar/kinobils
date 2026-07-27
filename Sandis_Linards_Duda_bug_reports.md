@@ -24,7 +24,7 @@ h2. Expected
 COMMENTS: Nav redzams pilnā garumā īsais filmas apraksts, filmas attēls pārklājas virs teksta.
 
 RESOLUTION:
-Status: FIXED
+Status: FIXEDfg
 FIXED IN VERSION: 0.1.2
 Filmas informācijas teksta laukums pielāgots, lai plakāts neaizsegtu aprakstu.
 
@@ -42,6 +42,14 @@ Status: FAILED
 BUG: Pēc labojumiem filmas apraksta attēlošana nestrādā pareizi joprojām - gan pilnekrānā, gan samazinātā teksts pazūd
 1) Pilns ekrāns: https://imgur.com/a/GEuNLwT
 2) Samazināts: https://imgur.com/3ZiN6By
+
+RESOLUTION:
+Status: FIXED
+FIXED IN VERSION: 0.1.9
+Filmas detaļu lapai pievienots atsevišķs adaptīvais izkārtojums ar garantētu teksta un plakāta atdalīšanu. Šaurā logā plakāts atrodas zem apraksta.
+
+FOLLOW-UP: FIX APPROVED
+Teksts attēlots pareizi gan pilnekrāna, gan samazinātajā ekrānā.
 
 TC: KIN-03 Kā pircējs es vēlos filtrēt filmas pēc žanra un rādīt tikai filmas ar šodienas seansiem, lai ātrāk atrastu piemērotu filmu.
 Date: 27.07.2026 19:04

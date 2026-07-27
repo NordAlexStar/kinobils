@@ -54,3 +54,29 @@ TC: KIN-07-01 27.07.2026 18:35
 VERSION: eb82ec58
 Status: PASSED
 
+TC: KIN-10-01 27.07.2026 20:20
+VERSION: 29d989fc
+Status: PASSED
+
+TC: KIN-11-01 27.07.2026 20:25
+VERSION: 29d989fc
+Status: PASSED
+
+TC: KIN-12-01 27.07.2026 20:40
+VERSION: 29d989fc
+Status: FAILED
+BUG: nav redzams rezervācijas atskaites laiks biļetes pirkšanas brīdī
+Preconditions:
+* Filmas seansā var izvēlēties vietas apmaksai. - OK
+
+Steps:
+1. Izvēlēties vietas filmas seansam. - OK
+2. Turpināt uz maksājuma lapu. - OK
+3. Pārliecināties, ka ir redzama rezervācijas laika atskaite. - FAILED
+
+Expected:
+Maksājuma lapā ir redzams vietu rezervācijas atskaites laiks.
+
+COMMENTS: Maksājumā lapā pēc vietas izvēles nav redzams rezervācijas atskaites laiks.
+
+
