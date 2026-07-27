@@ -1,6 +1,6 @@
 TC: KIN-02-01 Kā pircējs es vēlos apskatīt filmas detalizētu informāciju — nosaukumu, īsu aprakstu, žanru, ilgumu minūtēs, vecuma ierobežojumu, valodu un subtitru valodu — lai varētu pieņemt lēmumu par filmas izvēli.
 Date: 27.07.2026 18:24
-VERSION:
+VERSION: 39ddc010
 Status: FAILED
 BUG: Nav redzams pilnā garumā īsais filmas apraksts, filmas attēls pārklājas virs teksta.
 
