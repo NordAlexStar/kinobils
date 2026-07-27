@@ -29,16 +29,16 @@ VERSION: 84f8257b
 Status: FAILED
 
 h2. Preconditions
-Grozā ir pievienota kino biļete un pircējam ir pieejams atbalstīts maksājuma veids 
+* Iepirkumu grozā ir pievienota biļete uz kino, un pircējs var izvēlēties maksāšanas veidu
 
 h2. Steps
-* 1. Izvēlēties maksājuma veidu - FAILED
-* 2. Ievadīt nepieciešamos maksājuma datus
-* 3. Nospiest pogu "Maksāt"
+* izvēlēties maksājuma veidu - FAILED
+* Ievadīt nepieciešamos maksājuma datus
+* Nospiest pogu "Maksāt"
 
 h2. Expected
 * Sistēma veiksmīgi apstrādā maksājumu
 * Pasūtījums tiek apstiprināts
 * Pircējs saņem paziņojumu par veiksmīgu maksājumu
 
-COMMENT: Nav iespējams Izvēlēties maksājumu veidu
+COMMENT: Nav iespējams izvēlēties maksājuma veidu
