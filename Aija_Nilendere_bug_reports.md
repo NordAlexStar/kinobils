@@ -10,6 +10,11 @@ h2. Preconditions
 Comments:
 Tikai vienai filmai ir 1+ seansi, pārējām ir tikai 1 seanss.
 
+RESOLUTION:
+Status: FIXED
+FIXED IN VERSION: 0.1.8
+Demonstrācijas datos vairākām filmām pievienoti vismaz divi seansi, lai seansu izvēles scenāriju varētu pārbaudīt.
+
 
 TC:  KIN-15-01 27.07.2026 18:30 \
 Version: 0414c7cd75d086cc954347d27bf93a39944c7de2
