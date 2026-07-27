@@ -16,20 +16,23 @@ VERSION: c1b97195
 Status: FAILED
 Bug: Maksājuma laikā rezervētas vietas var izvēlēties citi lietotāji
 h2. Preconditions
-*Izvēlēties filmas seansu/ vietas un pievienot biļetes grozā - ok
+*Izvēlēties filmas seansu, vietas un pievienot biļetes grozā - ok
 
 h2. Steps
 * 1. Izvēlēties filmu un seansu - ok
 * 2. Izvēlēties vrīvas vietas - ok
 * 3. Pāriet uz maksājuma procesu - ok
-* 4. Atvērt sistēmu otrajā pārlūka logā kā cits lietotājs - failed
-* 5. Izvēlēties to [ašu filmu un seansu
+* 4. Atvērt sistēmu otrajā pārlūka logā kā cits lietotājs - ok
+* 5. Izvēlēties to pašu filmu un seansu - failed
 
 h2. Expected
 Izvēlētas vietas ir rezervētas
 
 COMMENTS:
 Izvēlētas vietas ir brīvas
+
+TC: KIN-14 27.07.2026 20:37
+
 
 
 TC: KIN-01-01 27.07.2026 17:51
