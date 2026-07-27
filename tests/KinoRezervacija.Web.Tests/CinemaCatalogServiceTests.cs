@@ -31,6 +31,26 @@ public sealed class CinemaCatalogServiceTests
     }
 
     [Fact]
+    public void ValidDiscountCodeReducesTheOrderTotal()
+    {
+        var discounts = new DiscountService();
+
+        Assert.True(discounts.TryApply("blegh", 20.00m, out var total, out var message));
+        Assert.Equal(18.00m, total);
+        Assert.Contains("10%", message);
+    }
+
+    [Fact]
+    public void InvalidDiscountCodeLeavesTheOrderTotalUnchanged()
+    {
+        var discounts = new DiscountService();
+
+        Assert.False(discounts.TryApply("bleg", 20.00m, out var total, out var message));
+        Assert.Equal(20.00m, total);
+        Assert.Contains("Nederīgs", message);
+    }
+
+    [Fact]
     public void SeededMoviesHaveAnAvailableScreeningAndAValidHall()
     {
         var catalog = new CinemaCatalogService();
