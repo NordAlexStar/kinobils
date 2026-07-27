@@ -293,7 +293,9 @@ h2. Expected
 * Lietotājs var veiksmīgi izveidot jaunu paroli
 
 ### KIN-23  Must  Kā sistēmas operators es vēlos redzēt pasūtījuma, maksājuma un biļetes nosūtīšanas statusu, lai varētu palīdzēt pircējam problēmas gadījumā.
-aijanilendere-max
+aijanilendere-max 
+
+TP-28: KIN-23: Pasūtījumu statusi
 
 #### KIN-23-01: Veiksmīga pasūtījuma statusu attēlošana
 
@@ -335,6 +337,8 @@ h2. Expected
 
 ### KIN-24	Should	Kā sistēmas operators es vēlos izveidot, aktivizēt un deaktivizēt atlaižu kodus, lai pārvaldītu atlaižu kampaņas.
 aijanilendere-max
+
+TP-29: KIN-24: Atlaižu kodu pārvaldība
 
 #### KIN-24-01: Atlaižu koda izveidošana
 
