@@ -51,6 +51,17 @@ public sealed class CinemaCatalogServiceTests
     }
 
     [Fact]
+    public void PaymentValidationSupportsCardAndInternetBanking()
+    {
+        var payments = new PaymentService();
+
+        Assert.True(payments.TryValidate("Kartes maksājums", "4242 4242 4242 4242", "12/30", "123", out _));
+        Assert.True(payments.TryValidate("Internetbanka", "", "", "", out _));
+        Assert.False(payments.TryValidate("Kartes maksājums", "123", "", "", out var message));
+        Assert.Contains("derīgu", message);
+    }
+
+    [Fact]
     public void SeededMoviesHaveAnAvailableScreeningAndAValidHall()
     {
         var catalog = new CinemaCatalogService();
