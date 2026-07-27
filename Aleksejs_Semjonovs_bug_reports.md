@@ -26,3 +26,5 @@ Gads ir pievienots filmu modelim un tiek parādīts filmu saraksta kartītē.
 FOLLOW-UP:
 Versijas attēlojums izlabots; tas ir redzams lietotnes galvenē versijā 0.1.1.
 
+CONCLUSION: TC PASSED 0.1.1 27.07.2026 18:44
+
