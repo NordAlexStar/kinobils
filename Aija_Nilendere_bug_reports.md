@@ -10,6 +10,16 @@ h2. Preconditions
 Comments:
 Tikai vienai filmai ir 1+ seansi, pārējām ir tikai 1 seanss.
 
+RESOLUTION
+Status: Fixed
+Fixed in Version: 0.1.0
+Filmām ir pievienoti 1+ seansi.
+
+FOLLOW-UP
+Filmu skaits izlabots.
+
+CONCLUSION: TC PASSED 0.1.0 27.07.2026 19:01
+
 
 
 
